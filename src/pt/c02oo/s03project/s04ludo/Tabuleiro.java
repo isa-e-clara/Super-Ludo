@@ -78,6 +78,8 @@ public class Tabuleiro {
 				} else if(j == 7 && j >= 9) {
 					celulas[i][j] = new Celula("amarelo", i, j);
 					celulas[i][j].definirProxima(i - 1, 7);
+				} else {
+					celulas[i][j] = null;
 				}
 				
 			}
