@@ -1,7 +1,7 @@
 package pt.c02oo.s03project.s04ludo;
 
 public class Celula {
-	private Peca peca1, peca2, peca3, peca4; //pode ter no maximo quatro pe�as empilhadas do mesmo time
+	private Peca peca1, peca2, peca3, peca4; //pode ter no maximo quatro pecas empilhadas do mesmo time
 	private int x, y;
 	private int proximaX, proximaY;
 	private String cor;

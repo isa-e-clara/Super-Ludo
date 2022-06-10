@@ -1,5 +1,5 @@
 package pt.c02oo.s03project.s04ludo;
 
-public class Maquina implements Jogador{
+public class Maquina extends Jogador{
 
 }

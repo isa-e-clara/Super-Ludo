@@ -1,8 +1,8 @@
 package pt.c02oo.s03project.s04ludo;
 import java.util.Random;
 
-public class Jogador { //amiga achei melhor fazer por heranca pq s√≥ uma fun√ß√£o vai ser
-	//diferente pra m√°quina e pra pessoa
+public class Jogador { //amiga achei melhor fazer por heranca pq sÛ uma funÁ„o vai ser
+	//diferente pra m·quina e pra pessoa
 	private Peca peca1, peca2, peca3, peca4;
 	
 	public void conectaPeca(Peca peca) { 
@@ -19,13 +19,13 @@ public class Jogador { //amiga achei melhor fazer por heranca pq s√≥ uma fun√ß√£
 			//erro, exception		
 	}
 	
-	public int dado {
+	public int dado() {
 		Random rand = new Random();
-		int randomNum = rand.nextInt(6) + 1
+		int randomNum = rand.nextInt(6) + 1;
 		return randomNum;
 	}
-	public void move{} //aqui entra ou a estrat√©gia da m√°quina ou a escolha de que peca vai andar da pessoa
-	public void conectaPeca(Peca peca) {
-		this.
-	}
+	
+	public void move() {} //aqui entra ou a estratÈgia da m·quina ou a escolha de que peca vai andar da pessoa
+	
+	
 }

@@ -11,29 +11,29 @@ public class Tabuleiro {
 				if(i >= 2 && i <= 3 && j >= 2 && j <= 3) {
 					celulas[i][j] = new Base("vermelho", i, j);
 					celulas[i][j].definirProxima(6, 1);
-					celulas[i][j].conectaPeca(new Peca(i, j, nVermelho, 'vermelho'))
+					celulas[i][j].conectaPeca(new Peca(i, j, nVermelho, "vermelho"));
 					nVermelho++;
 				} else if(i >= 2 && i <= 3 && j >= 11 && j <= 12) {
 					celulas[i][j] = new Base("verde", i, j);
 					celulas[i][j].definirProxima(1, 8);
-					celulas[i][j].conectaPeca(new Peca(i, j, nVerde, 'verde'))
+					celulas[i][j].conectaPeca(new Peca(i, j, nVerde, "verde"));
 					nVerde++;
 				} else if(i >= 11 && i <= 12 && j >= 2 && j <= 3) {
 					celulas[i][j] = new Base("amarelo", i, j);
 					celulas[i][j].definirProxima(13, 6);
-					celulas[i][j].conectaPeca(new Peca(i, j, nAmarelo, 'amarelo'))
+					celulas[i][j].conectaPeca(new Peca(i, j, nAmarelo, "amarelo"));
 					nAmarelo++;
 				} else if(i >= 11 && i <= 12 && j >= 11 && j <= 12) {
 					celulas[i][j] = new Base("azul", i, j);
 					celulas[i][j].definirProxima(8, 13);
-					celulas[i][j].conectaPeca(new Peca(i, j, nAzul, 'azul'))
+					celulas[i][j].conectaPeca(new Peca(i, j, nAzul, "azul"));
 					nAzul++;
 				} else if(i == 6 && j == 12) {
 					celulas[i][j] = new CelulaEstrela(i, j, "null");
 					celulas[i][j].definirProxima(6, 13); //prox normal
 				} else if(i == 6 && (j <= 5 || j >= 9)) {
 					if (j == 1)
-						celulas[i][j] = new CelulaEstrela("vermelho", i, j);
+						celulas[i][j] = new CelulaEstrela(i, j, "vermelho");
 					else
 						celulas[i][j] = new Celula("null", i, j);
 					if(j == 5)
@@ -47,7 +47,7 @@ public class Tabuleiro {
 					celulas[i][j].definirProxima(8, 1); //prox normal
 				} else if(i == 8 && (j <= 5 || j >= 9)) {
 					if (j == 13)
-						celulas[i][j] = new CelulaEstrela("azul", i, j);
+						celulas[i][j] = new CelulaEstrela(i, j, "azul");
 					else
 						celulas[i][j] = new Celula("null", i, j);
 					if(j == 0)
@@ -61,7 +61,7 @@ public class Tabuleiro {
 					celulas[i][j].definirProxima(1, 6); //prox normal
 				} else if(j == 6 && (i <= 5 || i >= 9)) {
 					if (i == 13)
-						celulas[i][j] = new CelulaEstrela("amarelo", i, j);
+						celulas[i][j] = new CelulaEstrela(i, j, "amarelo");
 					else
 						celulas[i][j] = new Celula("null", i, j);
 					if(i == 0)
@@ -75,7 +75,7 @@ public class Tabuleiro {
 					celulas[i][j].definirProxima(13, 8); //prox normal
 				} else if(j == 8 && (i <= 5 || i >= 9)) {
 					if (i == 1)
-						celulas[i][j] = new CelulaEstrela("verde", i, j);
+						celulas[i][j] = new CelulaEstrela(i, j, "verde");
 					else
 						celulas[i][j] = new Celula("null", i, j);
 					if(i == 5)
@@ -86,7 +86,7 @@ public class Tabuleiro {
 						celulas[i][j].definirProxima(i + 1, 6);
 				} else if((i == 7 && j == 0) || (i == 0 && j == 7) || (i == 7 && j == 14) || (i == 14 && j == 7)) {
 					celulas[i][j] = new Celula("null", i, j);
-					celulas[i][j].definirProxima(-1, -1); //a proxima posi��o depende da cor de cada pe�a, fazer um if quando tiver movendo a pe�a para ver isso
+					celulas[i][j].definirProxima(-1, -1); //a proxima posicao depende da cor de cada peca, fazer um if quando tiver movendo a peca para ver isso
 				} else if(i == 7 && j <= 5 && j > 0) {
 					celulas[i][j] = new Celula("vermelho", i, j);
 					celulas[i][j].definirProxima(7, j + 1);
@@ -108,7 +108,7 @@ public class Tabuleiro {
 				
 	}
 	
-	public Celula getCelula(x, y) {
+	public Celula getCelula( int x, int y) {
 		return celulas[x][y];
 	}
 	
