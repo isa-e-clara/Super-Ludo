@@ -1,8 +1,8 @@
 package pt.c02oo.s03project.s04ludo;
+import java.util.Random;
 
 public class Tabuleiro {
 	private Celula[][] celulas;
-	int nVermelho = 1, nAzul = 1, nVerde = 1, nAmarelo = 1;
 	
 	public Tabuleiro() {
 		celulas = new Celula[15][15];
@@ -11,23 +11,15 @@ public class Tabuleiro {
 				if(i >= 2 && i <= 3 && j >= 2 && j <= 3) {
 					celulas[i][j] = new Base("vermelho", i, j);
 					celulas[i][j].definirProxima(6, 1);
-					celulas[i][j].conectaPeca(new Peca(i, j, nVermelho, "vermelho"));
-					nVermelho++;
 				} else if(i >= 2 && i <= 3 && j >= 11 && j <= 12) {
 					celulas[i][j] = new Base("verde", i, j);
 					celulas[i][j].definirProxima(1, 8);
-					celulas[i][j].conectaPeca(new Peca(i, j, nVerde, "verde"));
-					nVerde++;
 				} else if(i >= 11 && i <= 12 && j >= 2 && j <= 3) {
 					celulas[i][j] = new Base("amarelo", i, j);
 					celulas[i][j].definirProxima(13, 6);
-					celulas[i][j].conectaPeca(new Peca(i, j, nAmarelo, "amarelo"));
-					nAmarelo++;
 				} else if(i >= 11 && i <= 12 && j >= 11 && j <= 12) {
 					celulas[i][j] = new Base("azul", i, j);
 					celulas[i][j].definirProxima(8, 13);
-					celulas[i][j].conectaPeca(new Peca(i, j, nAzul, "azul"));
-					nAzul++;
 				} else if(i == 6 && j == 12) {
 					celulas[i][j] = new CelulaEstrela(i, j, "null");
 					celulas[i][j].definirProxima(6, 13); //prox normal
@@ -112,8 +104,23 @@ public class Tabuleiro {
 		return celulas[x][y];
 	}
 	
-	public void anda(Peca peca) {
+	public void moverPeca(Peca peca) {
 		
+	}
+	
+	public int dado() {
+		Random rand = new Random();
+		int randomNum = rand.nextInt(6) + 1;
+		return randomNum;
+	}
+	
+	//sobrecarga:
+	public void atualizarView(int numDado) { //num eh o numero q foi tirado no dado
+		//função para atualizar o view do dado qnd mudar o numero ou algo do tipo
+	}
+	
+	public void atualizarView() {
+		//função para atualizar o view qnd acontecer algum movimento
 	}
 	
 	public void conectaPecaCelula(int x, int y, Peca peca) {

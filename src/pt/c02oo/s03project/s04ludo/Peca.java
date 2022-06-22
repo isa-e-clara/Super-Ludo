@@ -5,18 +5,44 @@ public class Peca {
 	private int x, y;
 	private Tabuleiro tabuleiro;
 	private String cor;
+	private boolean estaNaBase;
 	
 	public Peca(int x, int y, int numero, String cor) {
 		this.x = x;
 		this.y = y;
 		this.numero = numero;
 		this.cor = cor;
+		this.estaNaBase = true; //a principio todas as pecas comecam na base
 	}
 	
 	public int getNumero() {
 		return numero;
 	}
 	
+	public boolean getEstaNaBase() {
+		return estaNaBase;
+	}
+
+	public void setEstaNaBase(boolean estaNaBase) {
+		this.estaNaBase = estaNaBase;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
 	public void conectaTabuleiro(Tabuleiro tabuleiro) {
 		this.tabuleiro = tabuleiro;
 	}
@@ -47,5 +73,7 @@ public class Peca {
 				tabuleiro.getCelula(14,7).definirProxima(14,6);
 		}	
 	}
+	
+
 	
 }
