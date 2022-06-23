@@ -1,14 +1,25 @@
 package pt.c02oo.s03project.s04ludo;
 
+import java.util.ArrayList;
+
 public class Jogador { //acho que ainda deva ter uma interface superior 
 	//diferente pra máquina e pra pessoa
 	protected Peca peca1, peca2, peca3, peca4;
 	protected String cor;
 	protected Tabuleiro tabuleiro;
+	ArrayList<Peca> pecasDisponiveis;
+    ArrayList<Peca> pecasBase;
+	protected int qtdPecasDisponiveis;
+	protected int qtdPecasBase;
 	
 	public Jogador(String cor, Tabuleiro tabuleiro) {
 		this.cor = cor;
 		this.tabuleiro = tabuleiro;
+		//listinha com as pecas disponiveis e as da base
+		ArrayList<Peca> pecasDisponiveis = new ArrayList(); //ficar de olho nos arrays
+        ArrayList<Peca> pecasBase = new ArrayList();
+		qtdPecasBase = 0;
+		qtdPecasDisponiveis = 0;
 		inicializarPecas(); //pode chamar aqui sera? ficar atenta para erros
 	}
 	
@@ -58,10 +69,46 @@ public class Jogador { //acho que ainda deva ter uma interface superior
 		
 	}
 	
-	public void fazerJogada(int numDado) { //essa funcao deve ser responsavel por deixar o jogador selecionar uma peca dentre as disponiveis (pecas na base n podem andar por exemplo)
-		//aqui entra ou a estratégia da máquina ou a escolha de que peca vai andar da pessoa						
-		//essa funcao pode ja inclusive chamar a mover
-	}
+	public void fazerJogada(int numDado) { //todas as maquinas vao precisar saber que pecas estao disponiveis e quais estao na base
+		//essa funcao deve ser responsavel por deixar o jogador selecionar uma peca dentre as disponiveis (pecas na base n podem andar por exemplo)
+				//aqui entra ou a estratégia da máquina ou a escolha de que peca vai andar da pessoa						
+				//essa funcao pode ja inclusive chamar a mover
+
+        if (peca1.getEstaNaBase() == false) {
+            pecasDisponiveis.add(peca1);
+            qtdPecasDisponiveis++;
+        }
+        else{
+            pecasBase.add(peca1);
+            qtdPecasBase++;
+        }
+        if (peca2.getEstaNaBase() == false) {
+            pecasDisponiveis.add(peca2);
+            qtdPecasDisponiveis++;
+        }
+        else{
+            pecasBase.add(peca2);
+            qtdPecasBase++;
+        }
+        if (peca3.getEstaNaBase() == false) {
+            pecasDisponiveis.add(peca3);
+            qtdPecasDisponiveis++;
+        }
+        else{
+            pecasBase.add(peca3);
+            qtdPecasBase++;
+        }
+        if (peca4.getEstaNaBase() == false) {
+            pecasDisponiveis.add(peca4);
+            qtdPecasDisponiveis++;
+        }
+        else{
+            pecasBase.add(peca4);
+            qtdPecasBase++;
+        }
+        
+        //checar se alguma das pecas vai pra uma celula estrela que ja esta ocupada por outra cor, se sim tira das pecas disponiveis 
+    }
 	
 	public void mover(Peca peca) {} 
 	//essa funcao deve ser responsavel por mover a peca selecionada pelo jogador
