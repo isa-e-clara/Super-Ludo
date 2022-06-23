@@ -17,8 +17,16 @@ public class Celula {
 		peca4 = null;
 		ehEstrela = false;
 	}
-	
-	
+
+	public void setProximaX(int proximaX) {
+		this.proximaX = proximaX;
+	}
+
+	public void setProximaY(int proximaY) {
+		this.proximaY = proximaY;
+	}
+
+
 	public int getProxY() {
 		return proximaY;
 	}
@@ -84,6 +92,22 @@ public class Celula {
 			return peca4;
 		else
 			return null; 
+	}
+
+	public Peca getPeca1() {
+		return peca1;
+	}
+
+	public Peca getPeca2() {
+		return peca2;
+	}
+
+	public Peca getPeca3() {
+		return peca3;
+	}
+
+	public Peca getPeca4() {
+		return peca4;
 	}
 
 }

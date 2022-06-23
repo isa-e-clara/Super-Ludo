@@ -112,31 +112,47 @@ public class Tabuleiro {
 			pecaComida.setX(pecaComida.getBaseX());
 			pecaComida.setY(pecaComida.getBaseY());
 			atualizarView(pecaComida.getBaseX(),pecaComida.getBaseY());
-		}
-			
+		}		
 	}
 
 	public void moverPeca(Peca peca, int numDado) {
-		//lembrar do if -1 -1, celula que vaii entrar na casinha
-		//checar se ganhou
-		//checar se eh celula estrela
 		//vamos ignorar a barreira
-		//lembrar de lidar com pecas q andam empilhadas
 		//checar se pode mover vai ser la no fazer jogada
-		//acaba o jogo quando o num de jogadores -1 ganharem o jogo
+		boolean ehDupla = false;
 		for (int i = 0; i < numDado; i++) {
 			int x = peca.getX();
 			int y = peca.getY();
-			atualizarView(celulas[x][y].getProxX(), celulas[x][y].getProxY());
-			celulas[x][y].desconectaPeca(peca);
-			if (i==numDado-1 && (celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()].getCorPeca() != peca.getCor())) { //vai comer
+			
+			if(celulas[x][y].getProxX() == -1 && celulas[x][y].getProxY() == -1) { //casinha dupla
+				peca.defineProxima();
+				ehDupla = true;
+			}
+			
+			atualizarView(celulas[x][y].getProxX(), celulas[x][y].getProxY()); //eh aqui mesmo??
+			
+			if (i==numDado-1 && (celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()].getCorPeca() != peca.getCor()) ) { //vai comer
 				come(celulas[x][y].getProxX(),celulas[x][y].getProxY());	
 			}
 
-			celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()]. desconectaPeca(peca);
+			//celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()].desconectaPeca(peca);
+			celulas[x][y].desconectaPeca(peca);
 			celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()].conectaPeca(peca);
+			
 			peca.setX(celulas[x][y].getProxX());
 			peca.setY(celulas[x][y].getProxY());
+			
+			if((peca.getX() == 7 && peca.getY() == 6) || (peca.getX() == 6 && peca.getY() == 7) || (peca.getX() == 7 && peca.getY() == 8) || (peca.getX() == 8 && peca.getY() == 7)) {
+				peca.setGanhou(true);
+				break;
+			}
+			
+			if(ehDupla == true) {
+				celulas[x][y].setProximaX(-1);
+				celulas[x][y].setProximaY(-1);
+			}
+			
+	
+				
 		}
 		 
 

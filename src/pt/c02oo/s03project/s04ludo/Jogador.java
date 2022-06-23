@@ -11,6 +11,7 @@ public class Jogador { //acho que ainda deva ter uma interface superior
     ArrayList<Peca> pecasBase;
 	protected int qtdPecasDisponiveis;
 	protected int qtdPecasBase;
+	protected boolean ganhou;
 	
 	public Jogador(String cor, Tabuleiro tabuleiro) {
 		this.cor = cor;
@@ -20,6 +21,7 @@ public class Jogador { //acho que ainda deva ter uma interface superior
         ArrayList<Peca> pecasBase = new ArrayList();
 		qtdPecasBase = 0;
 		qtdPecasDisponiveis = 0;
+		ganhou = false;
 		inicializarPecas(); //pode chamar aqui sera? ficar atenta para erros
 	}
 	
@@ -108,12 +110,30 @@ public class Jogador { //acho que ainda deva ter uma interface superior
         }
         
         //checar se alguma das pecas vai pra uma celula estrela que ja esta ocupada por outra cor, se sim tira das pecas disponiveis 
+        //checar se eh uma peca que ja ganhou
     }
 	
+	public boolean jogadorGanhou() {
+		if((peca1.getGanhou() == true) && (peca2.getGanhou() == true) && (peca3.getGanhou() == true) && (peca4.getGanhou() == true)) {
+			ganhou = true;
+			return true;
+		}
+		return false;
+	}
+	
 	public void mover(Peca peca, int numDado) {
-		tabuleiro.moverPeca(peca, numDado);
-		//tabuleiro.atualizarView();
+		//lembrar de lidar com pecas empilhadas
+		Celula celula = tabuleiro.getCelula(peca.getX(), peca.getY());
+		if (celula.getPeca1() != null)
+			tabuleiro.moverPeca(celula.getPeca1(), numDado);
+		if (celula.getPeca2() != null)
+			tabuleiro.moverPeca(celula.getPeca2(), numDado);
+		if (celula.getPeca3() != null)
+			tabuleiro.moverPeca(celula.getPeca3(), numDado);
+		if (celula.getPeca4() != null)
+			tabuleiro.moverPeca(celula.getPeca4(), numDado);
 	} 
+	
 	//essa funcao deve ser responsavel por mover a peca selecionada pelo jogador
 	//chamar aquela fun��o moverPeca do tabuleiro?
 	//lembrar de chamar a funcao de atualizar o view

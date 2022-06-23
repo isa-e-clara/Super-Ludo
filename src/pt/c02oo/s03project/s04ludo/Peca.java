@@ -7,6 +7,8 @@ public class Peca {
 	private String cor;
 	private int baseX;
 	private int baseY;
+	private boolean ganhou;
+	
 	
 	public Peca(int x, int y, int numero, String cor) {
 		this.x = x;
@@ -15,6 +17,19 @@ public class Peca {
 		this.cor = cor;
 		this.baseX = x;
 		this.baseY = y;
+		this.ganhou = false;
+	}
+	
+	public Tabuleiro getTabuleiro() {
+		return tabuleiro;
+	}
+	
+	public boolean getGanhou() {
+		return ganhou;
+	}
+
+	public void setGanhou(boolean ganhou) {
+		this.ganhou = ganhou;
 	}
 	
 	public int getBaseX() {

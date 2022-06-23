@@ -18,17 +18,17 @@ public class MaquinaAleatoria extends Maquina{
             if ((numDado == 1 || numDado == 6) && qtdPecasDisponiveis < 4) {
                 int tirarDaBase = rand.nextInt(2);
                 if (tirarDaBase == 0)
-                    mover(pecasDisponiveis.get(pecaDisponivelMovida));
+                    mover(pecasDisponiveis.get(pecaDisponivelMovida), numDado);
                 else {
-                    mover(pecasBase.get(0));
+                    mover(pecasBase.get(0), numDado);
                 }
             }
             else {
-                mover(pecasDisponiveis.get(pecaDisponivelMovida));
+                mover(pecasDisponiveis.get(pecaDisponivelMovida), numDado);
             }
         }
         else if (numDado == 1 || numDado == 6) {
-            mover(peca1);
+            mover(peca1, numDado);
         }
         
     }

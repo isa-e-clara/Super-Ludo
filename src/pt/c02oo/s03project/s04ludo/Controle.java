@@ -1,4 +1,5 @@
 package pt.c02oo.s03project.s04ludo;
+import java.util.ArrayList;
 
 public class Controle {
 	private Jogador jogador1, jogador2, jogador3, jogador4;
@@ -6,8 +7,9 @@ public class Controle {
 	private int modo; //0 para multiplayer e 1 para single player (contra maquina)
 	private Tabuleiro tabuleiro;
 	private int proximoJogador; //� pra marcar o numero de quem esta na vez de jogar
-	private int fimDeJogo; //isso eh pra avisar pra main qnd o jogo terminou; LEMBRAR DE IR ATUALIZANDO ISSO EM ALGUM LUGAR e ter a opcao de sair do jogo tbm
+	private boolean fimDeJogo; //isso eh pra avisar pra main qnd o jogo terminou; LEMBRAR DE IR ATUALIZANDO ISSO EM ALGUM LUGAR e ter a opcao de sair do jogo tbm
 	private int numDado;
+	private ArrayList<Jogador> jogadores = new ArrayList<>();
 	
 	public Controle(int qtdJogadores, Tabuleiro tabuleiro) {
 		this.qtdJogadores = qtdJogadores;
@@ -19,8 +21,8 @@ public class Controle {
 		}
 		
 		this.tabuleiro = tabuleiro;
-		this.proximoJogador = 1; //sempre come�a com o jogador 1
-		this.fimDeJogo = 0; //0 para jogo em andamento e 1 para fim de jogo
+		this.proximoJogador = 0; //sempre comeca com a posicao 0 da lista de ordem dos jogadores
+		this.fimDeJogo = false; 
 		this.jogador1 = null;
 		this.jogador2 = null;
 		this.jogador3 = null;
@@ -34,26 +36,45 @@ public class Controle {
 	public void criaJogadores() {
 		if(modo == 1) {
 			jogador1 = new Pessoa(corSelecionada(1), tabuleiro);
+			jogadores.add(jogador1);
 			jogador2 = new Maquina(corSelecionada(2), tabuleiro);
+			jogadores.add(jogador2);
 		} else {
 			jogador1 = new Pessoa(corSelecionada(1), tabuleiro); //sempre vai ter pelo menos 2 jogadores nesse modo
+			jogadores.add(jogador1);
 			jogador2 = new Pessoa(corSelecionada(2), tabuleiro);
-			if(qtdJogadores == 3)
+			jogadores.add(jogador2);
+			if(qtdJogadores == 3) {
 				jogador3 = new Pessoa(corSelecionada(3), tabuleiro);
-			else if(qtdJogadores == 4)
+				jogadores.add(jogador3);
+			}
+			else if(qtdJogadores == 4) {
 				jogador4 = new Pessoa(corSelecionada(4), tabuleiro);
+				jogadores.add(jogador4);
+			}
 		}
 	}
 	
+	public void retirarJogador(Jogador jogador) {
+		for(int i = 0; i < qtdJogadores; i++) {
+			if(jogadores.get(i) == jogador) {
+				jogadores.remove(i);
+				break;
+			}
+		}
+		qtdJogadores -= 1;
+	}
+	
 	public void iniciarJogo() {
+		//lembrar de checar qnd o jogo acabar de vez
 		
 	}
 	
-	public void definirProximoJogador() {
+	public Jogador definirProximoJogador() {
 		if(proximoJogador + 1 <= qtdJogadores)
-			proximoJogador += 1;
+			return (jogadores.get(proximoJogador + 1));	
 		else
-			proximoJogador = 1;
+			return (jogadores.get(0)); //volta para o inicio da lista
 	}
 	
 	public void rodarDado() { 
@@ -61,20 +82,16 @@ public class Controle {
 		tabuleiro.atualizarView(numDado);
 	}
 	
-	public void jogar() {
+	public void jogar() {	
 		rodarDado();
-		if(proximoJogador == 1) {
-			jogador1.fazerJogada(numDado); 
-		} else if(proximoJogador == 2) {
-			jogador2.fazerJogada(numDado);
-		} else if(proximoJogador == 3) {
-			jogador3.fazerJogada(numDado);
-		} else if(proximoJogador == 4) {
-			jogador4.fazerJogada(numDado);
-		} else {
-			//erro
+		Jogador jogadorAtual = definirProximoJogador();
+		jogadorAtual.fazerJogada(numDado);
+		if(jogadorAtual.jogadorGanhou() == true) {
+			retirarJogador(jogadorAtual); //colocar alguma mensagem de vitoria
+			if(qtdJogadores == 1) {
+				fimDeJogo = true;
+			}
 		}
-		definirProximoJogador();
 	}
 	
 }
