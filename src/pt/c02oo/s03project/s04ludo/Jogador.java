@@ -3,7 +3,6 @@ package pt.c02oo.s03project.s04ludo;
 import java.util.ArrayList;
 
 public class Jogador { //acho que ainda deva ter uma interface superior 
-	//diferente pra m�quina e pra pessoa
 	protected Peca peca1, peca2, peca3, peca4;
 	protected String cor;
 	protected Tabuleiro tabuleiro;
@@ -24,14 +23,6 @@ public class Jogador { //acho que ainda deva ter uma interface superior
 		ganhou = false;
 		inicializarPecas(); //pode chamar aqui sera? ficar atenta para erros
 	}
-	
-	/* acho que n precisa dessa funcao?
-	 * 
-	 * public void conectaPeca(Peca peca) { int numero = peca.getNumero(); if(numero
-	 * == 1) this.peca1 = peca; else if(numero == 2) this.peca2 = peca; else
-	 * if(numero == 3) this.peca3 = peca; else if(numero == 4) this.peca4 = peca;
-	 * //else //erro, exception }
-	 */
 
 	public void inicializarPecas() { 
 		if(cor == "vermelho") {
@@ -67,14 +58,12 @@ public class Jogador { //acho que ainda deva ter uma interface superior
 		tabuleiro.conectaPecaCelula(peca1.getX(), peca1.getY(), peca1);
 		tabuleiro.conectaPecaCelula(peca2.getX(), peca2.getY(), peca2);
 		tabuleiro.conectaPecaCelula(peca3.getX(), peca3.getY(), peca3);
-		tabuleiro.conectaPecaCelula(peca4.getX(), peca4.getY(), peca4);
-		
+		tabuleiro.conectaPecaCelula(peca4.getX(), peca4.getY(), peca4);	
 	}
 	
-	public void fazerJogada(int numDado) { //todas as maquinas vao precisar saber que pecas estao disponiveis e quais estao na base
+	public void fazerJogada(int numDado) { 
 		//essa funcao deve ser responsavel por deixar o jogador selecionar uma peca dentre as disponiveis (pecas na base n podem andar por exemplo)
-				//aqui entra ou a estrat�gia da m�quina ou a escolha de que peca vai andar da pessoa						
-				//essa funcao pode ja inclusive chamar a mover
+		//aqui entra ou a estrat�gia da m�quina ou a escolha de que peca vai andar da pessoa (na heranca)						
 
         if (peca1.getEstaNaBase() == false) {
             pecasDisponiveis.add(peca1);
@@ -122,7 +111,7 @@ public class Jogador { //acho que ainda deva ter uma interface superior
 	}
 	
 	public void mover(Peca peca, int numDado) {
-		//lembrar de lidar com pecas empilhadas
+		//lidar com pecas empilhadas -> ver todas as pecas q estao na celula e mover
 		Celula celula = tabuleiro.getCelula(peca.getX(), peca.getY());
 		if (celula.getPeca1() != null)
 			tabuleiro.moverPeca(celula.getPeca1(), numDado);
@@ -133,10 +122,5 @@ public class Jogador { //acho que ainda deva ter uma interface superior
 		if (celula.getPeca4() != null)
 			tabuleiro.moverPeca(celula.getPeca4(), numDado);
 	} 
-	
-	//essa funcao deve ser responsavel por mover a peca selecionada pelo jogador
-	//chamar aquela fun��o moverPeca do tabuleiro?
-	//lembrar de chamar a funcao de atualizar o view
-
 	
 }

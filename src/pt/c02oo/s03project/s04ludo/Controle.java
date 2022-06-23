@@ -3,25 +3,18 @@ import java.util.ArrayList;
 
 public class Controle {
 	private Jogador jogador1, jogador2, jogador3, jogador4;
-	private int qtdJogadores; //se alguem ganhar, atualizar esse e o de cima (tirar um jogador) que ai acaba o jogo quando n tiver mais jogadores ativos
+	private int qtdJogadores; 
 	private int modo; //0 para multiplayer e 1 para single player (contra maquina)
 	private Tabuleiro tabuleiro;
-	private int proximoJogador; //� pra marcar o numero de quem esta na vez de jogar
-	private boolean fimDeJogo; //isso eh pra avisar pra main qnd o jogo terminou; LEMBRAR DE IR ATUALIZANDO ISSO EM ALGUM LUGAR e ter a opcao de sair do jogo tbm
+	private int bot;
+	private int jogadorAtual; //eh pra marcar o numero de quem esta na vez de jogar
+	private boolean fimDeJogo; //isso eh pra avisar pra main qnd o jogo terminou
 	private int numDado;
 	private ArrayList<Jogador> jogadores = new ArrayList<>();
 	
-	public Controle(int qtdJogadores, Tabuleiro tabuleiro) {
-		this.qtdJogadores = qtdJogadores;
-		if(qtdJogadores == 1) {
-			this.modo = 1;
-			this.qtdJogadores += 1; //acrescentando a maquina na contagem dos jogadores
-		} else {
-			this.modo = 0;
-		}
-		
+	public Controle(Tabuleiro tabuleiro) {
 		this.tabuleiro = tabuleiro;
-		this.proximoJogador = 0; //sempre comeca com a posicao 0 da lista de ordem dos jogadores
+		this.jogadorAtual = -1; //sempre comeca com a posicao 0 da lista de ordem dos jogadores; dai to colocando -1 pq ele soma 1 na funcao
 		this.fimDeJogo = false; 
 		this.jogador1 = null;
 		this.jogador2 = null;
@@ -29,7 +22,7 @@ public class Controle {
 		this.jogador4 = null;
 	}
 	
-	public String corSelecionada(int num) { //fun��o para pegar a cor que a pessoa escolheu para jogar, nsei se deveria estar aqui e nem como fazer isso ainda, pois depende da interface
+	public String corSelecionada(int num) { //funcao para pegar a cor que a pessoa escolheu para jogar, nsei se deveria estar aqui e nem como fazer isso ainda, pois depende da interface
 		return "";							//num seria o numero do jogador
 	}										//colocar um if qnd for pra escolher a cor da maquina (random)
 	
@@ -37,7 +30,12 @@ public class Controle {
 		if(modo == 1) {
 			jogador1 = new Pessoa(corSelecionada(1), tabuleiro);
 			jogadores.add(jogador1);
-			jogador2 = new Maquina(corSelecionada(2), tabuleiro);
+			if(bot == 0)
+				jogador2 = new MaquinaAleatoria(corSelecionada(2), tabuleiro);
+			else if(bot == 1)
+				jogador2 = new MaquinaInteligente(corSelecionada(2), tabuleiro);
+			else //bot == 2
+				jogador2 = new MaquinaRapida(corSelecionada(2), tabuleiro);
 			jogadores.add(jogador2);
 		} else {
 			jogador1 = new Pessoa(corSelecionada(1), tabuleiro); //sempre vai ter pelo menos 2 jogadores nesse modo
@@ -65,16 +63,22 @@ public class Controle {
 		qtdJogadores -= 1;
 	}
 	
-	public void iniciarJogo() {
-		//lembrar de checar qnd o jogo acabar de vez
-		
+	public int quantidadeJogadores() { //funcao para pegar da interface a qtd de jogadores
+		return 0;
+	}
+	
+	public int botEscolhido() { //funcao para pegar da interface contra qual maquina a pessoa quer jogar
+		return 0;				// 0 para aleatoria, 1 para inteligente, 2 para rapida
 	}
 	
 	public Jogador definirProximoJogador() {
-		if(proximoJogador + 1 <= qtdJogadores)
-			return (jogadores.get(proximoJogador + 1));	
-		else
+		if(jogadorAtual + 1 <= qtdJogadores) {
+			jogadorAtual += 1;
+			return (jogadores.get(jogadorAtual));	
+		} else {
+			jogadorAtual = 0;
 			return (jogadores.get(0)); //volta para o inicio da lista
+		}
 	}
 	
 	public void rodarDado() { 
@@ -84,14 +88,32 @@ public class Controle {
 	
 	public void jogar() {	
 		rodarDado();
-		Jogador jogadorAtual = definirProximoJogador();
-		jogadorAtual.fazerJogada(numDado);
-		if(jogadorAtual.jogadorGanhou() == true) {
-			retirarJogador(jogadorAtual); //colocar alguma mensagem de vitoria
+		Jogador jogador = definirProximoJogador();
+		jogador.fazerJogada(numDado);
+		if(jogador.jogadorGanhou() == true) {
+			retirarJogador(jogador); //colocar alguma mensagem de vitoria
 			if(qtdJogadores == 1) {
 				fimDeJogo = true;
 			}
 		}
+	}
+	
+	public void iniciarJogo() { //se tud tiver certo, a gnt so precisa criar um controle e chamar essa funcao na main
+		//lembrar de checar qnd o jogo acabar de vez
+		qtdJogadores = quantidadeJogadores();
+		if(qtdJogadores == 1) {
+			modo = 1;
+			qtdJogadores += 1; //acrescentando a maquina na contagem dos jogadores
+			bot = botEscolhido();
+		} else {
+			modo = 0;
+		}
+		criaJogadores();
+		
+		while(fimDeJogo == false) {
+			jogar();
+		}
+		
 	}
 	
 }

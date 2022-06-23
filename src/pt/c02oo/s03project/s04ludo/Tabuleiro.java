@@ -111,7 +111,7 @@ public class Tabuleiro {
 			celulas[pecaComida.getBaseX()][pecaComida.getBaseY()].conectaPeca(pecaComida);
 			pecaComida.setX(pecaComida.getBaseX());
 			pecaComida.setY(pecaComida.getBaseY());
-			atualizarView(pecaComida.getBaseX(),pecaComida.getBaseY());
+			atualizarView(pecaComida.getBaseX(),pecaComida.getBaseY()); //eh aqui mesmo??
 		}		
 	}
 
@@ -130,32 +130,31 @@ public class Tabuleiro {
 			
 			atualizarView(celulas[x][y].getProxX(), celulas[x][y].getProxY()); //eh aqui mesmo??
 			
-			if (i==numDado-1 && (celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()].getCorPeca() != peca.getCor()) ) { //vai comer
+			//esse i == numDado - 1 eh pra checar se eh a ultima andada
+			if (i == numDado - 1 && (celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()].getCorPeca() != peca.getCor()) ) { //vai comer
 				come(celulas[x][y].getProxX(),celulas[x][y].getProxY());	
 			}
 
 			//celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()].desconectaPeca(peca);
+			//desconectando a peca da celula antiga e conectando na nova
 			celulas[x][y].desconectaPeca(peca);
 			celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()].conectaPeca(peca);
 			
+			//alterando o x e y da peca para o da nova posicao
 			peca.setX(celulas[x][y].getProxX());
 			peca.setY(celulas[x][y].getProxY());
 			
+			//verificando se chegou na celula final (ganhou):
 			if((peca.getX() == 7 && peca.getY() == 6) || (peca.getX() == 6 && peca.getY() == 7) || (peca.getX() == 7 && peca.getY() == 8) || (peca.getX() == 8 && peca.getY() == 7)) {
 				peca.setGanhou(true);
 				break;
 			}
 			
-			if(ehDupla == true) {
+			if(ehDupla == true) { //se era uma celula com duas opcoes de caminho
 				celulas[x][y].setProximaX(-1);
 				celulas[x][y].setProximaY(-1);
 			}
-			
-	
-				
 		}
-		 
-
 	}
 	
 	public int dado() {
@@ -165,12 +164,12 @@ public class Tabuleiro {
 	}
 	
 	//sobrecarga:
-	public void atualizarView(int numDado) { //num eh o numero q foi tirado no dado
-		//fun��o para atualizar o view do dado qnd mudar o numero ou algo do tipo
+	public void atualizarView(int numDado) { //numDado eh o numero q foi tirado no dado
+		//funcao para atualizar o view do dado qnd mudar o numero ou algo do tipo
 	}
 	
 	public void atualizarView(int x, int y) {
-		//fun��o para atualizar o view qnd acontecer algum movimento
+		//funcao para atualizar o view qnd acontecer algum movimento
 	}
 	
 	public void conectaPecaCelula(int x, int y, Peca peca) {
