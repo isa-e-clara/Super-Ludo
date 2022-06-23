@@ -5,26 +5,34 @@ public class Peca {
 	private int x, y;
 	private Tabuleiro tabuleiro;
 	private String cor;
-	private boolean estaNaBase;
+	private int baseX;
+	private int baseY;
 	
 	public Peca(int x, int y, int numero, String cor) {
 		this.x = x;
 		this.y = y;
 		this.numero = numero;
 		this.cor = cor;
-		this.estaNaBase = true; //a principio todas as pecas comecam na base
+		this.baseX = x;
+		this.baseY = y;
 	}
 	
+	public int getBaseX() {
+		return baseX;
+	}
+
+	public int getBaseY() {
+		return baseY;
+	}
+
 	public int getNumero() {
 		return numero;
 	}
 	
 	public boolean getEstaNaBase() {
-		return estaNaBase;
-	}
-
-	public void setEstaNaBase(boolean estaNaBase) {
-		this.estaNaBase = estaNaBase;
+		if (x == baseX && y == baseY)
+			return true;
+		return false;
 	}
 
 	public int getX() {
@@ -47,7 +55,11 @@ public class Peca {
 		this.tabuleiro = tabuleiro;
 	}
 
-	public void defineProxima() { //define as proximas posicoes para as pecas que estao em casas com duas possíveis próximas
+	public String getCor() {
+		return cor;
+	}
+
+	public void defineProxima() { //define as proximas posicoes para as pecas que estao em casas com duas possï¿½veis prï¿½ximas
 		if (x == 7 && y == 0) {
 			if (cor == "vermelho") 
 				tabuleiro.getCelula(7, 0).definirProxima(7,1);

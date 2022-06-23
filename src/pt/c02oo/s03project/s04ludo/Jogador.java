@@ -3,7 +3,7 @@ package pt.c02oo.s03project.s04ludo;
 import java.util.ArrayList;
 
 public class Jogador { //acho que ainda deva ter uma interface superior 
-	//diferente pra máquina e pra pessoa
+	//diferente pra mï¿½quina e pra pessoa
 	protected Peca peca1, peca2, peca3, peca4;
 	protected String cor;
 	protected Tabuleiro tabuleiro;
@@ -71,7 +71,7 @@ public class Jogador { //acho que ainda deva ter uma interface superior
 	
 	public void fazerJogada(int numDado) { //todas as maquinas vao precisar saber que pecas estao disponiveis e quais estao na base
 		//essa funcao deve ser responsavel por deixar o jogador selecionar uma peca dentre as disponiveis (pecas na base n podem andar por exemplo)
-				//aqui entra ou a estratégia da máquina ou a escolha de que peca vai andar da pessoa						
+				//aqui entra ou a estratï¿½gia da mï¿½quina ou a escolha de que peca vai andar da pessoa						
 				//essa funcao pode ja inclusive chamar a mover
 
         if (peca1.getEstaNaBase() == false) {
@@ -110,9 +110,12 @@ public class Jogador { //acho que ainda deva ter uma interface superior
         //checar se alguma das pecas vai pra uma celula estrela que ja esta ocupada por outra cor, se sim tira das pecas disponiveis 
     }
 	
-	public void mover(Peca peca) {} 
+	public void mover(Peca peca, int numDado) {
+		tabuleiro.moverPeca(peca, numDado);
+		//tabuleiro.atualizarView();
+	} 
 	//essa funcao deve ser responsavel por mover a peca selecionada pelo jogador
-	//chamar aquela função moverPeca do tabuleiro?
+	//chamar aquela funï¿½ï¿½o moverPeca do tabuleiro?
 	//lembrar de chamar a funcao de atualizar o view
 
 	

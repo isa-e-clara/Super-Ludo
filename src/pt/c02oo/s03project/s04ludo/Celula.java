@@ -60,4 +60,30 @@ public class Celula {
 		this.proximaY = j;
 	}
 
+	public String getCorPeca() {
+		if (peca1 != null) 
+			return peca1.getCor();
+		else if (peca2 != null) 
+			return peca2.getCor();
+		else if (peca3 != null) 
+			return peca3.getCor();
+		else if (peca4 != null) 
+			return peca4.getCor();
+		else
+			return "";
+	}
+
+	public Peca retornaPeca () {
+		if (peca1 != null) 
+			return peca1;
+		else if (peca2 != null) 
+			return peca2;
+		else if (peca3 != null) 
+			return peca3;
+		else if (peca4 != null) 
+			return peca4;
+		else
+			return null; 
+	}
+
 }

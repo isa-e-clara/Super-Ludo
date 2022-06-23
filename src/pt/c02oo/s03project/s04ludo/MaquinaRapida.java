@@ -11,10 +11,10 @@ public class MaquinaRapida extends Maquina{
     public void fazerJogada(int numDado) { //sempre vai ter uma ou zero pecas no tabuleiro
         //coloca uma peca no tabuleiro e CORRE, só tira outra quando essa primeira for comida ou chegar no final
         if (qtdPecasDisponiveis != 0) {
-            mover(pecasDisponiveis.get(0));
+            mover(pecasDisponiveis.get(0), numDado);
         }
         else if (numDado == 1 || numDado == 6){
-            mover(pecasBase.get(0));
+            mover(pecasBase.get(0), numDado);
         }
     }
 }

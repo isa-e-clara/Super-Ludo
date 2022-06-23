@@ -104,8 +104,42 @@ public class Tabuleiro {
 		return celulas[x][y];
 	}
 	
-	public void moverPeca(Peca peca) {
-		
+	public void come (int x, int y) {
+		while (celulas[x][y].retornaPeca() != null) {
+			Peca pecaComida = celulas[x][y].retornaPeca();
+			celulas[x][y].desconectaPeca(pecaComida);
+			celulas[pecaComida.getBaseX()][pecaComida.getBaseY()].conectaPeca(pecaComida);
+			pecaComida.setX(pecaComida.getBaseX());
+			pecaComida.setY(pecaComida.getBaseY());
+			atualizarView(pecaComida.getBaseX(),pecaComida.getBaseY());
+		}
+			
+	}
+
+	public void moverPeca(Peca peca, int numDado) {
+		//lembrar do if -1 -1, celula que vaii entrar na casinha
+		//checar se ganhou
+		//checar se eh celula estrela
+		//vamos ignorar a barreira
+		//lembrar de lidar com pecas q andam empilhadas
+		//checar se pode mover vai ser la no fazer jogada
+		//acaba o jogo quando o num de jogadores -1 ganharem o jogo
+		for (int i = 0; i < numDado; i++) {
+			int x = peca.getX();
+			int y = peca.getY();
+			atualizarView(celulas[x][y].getProxX(), celulas[x][y].getProxY());
+			celulas[x][y].desconectaPeca(peca);
+			if (i==numDado-1 && (celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()].getCorPeca() != peca.getCor())) { //vai comer
+				come(celulas[x][y].getProxX(),celulas[x][y].getProxY());	
+			}
+
+			celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()]. desconectaPeca(peca);
+			celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()].conectaPeca(peca);
+			peca.setX(celulas[x][y].getProxX());
+			peca.setY(celulas[x][y].getProxY());
+		}
+		 
+
 	}
 	
 	public int dado() {
@@ -116,11 +150,11 @@ public class Tabuleiro {
 	
 	//sobrecarga:
 	public void atualizarView(int numDado) { //num eh o numero q foi tirado no dado
-		//função para atualizar o view do dado qnd mudar o numero ou algo do tipo
+		//funï¿½ï¿½o para atualizar o view do dado qnd mudar o numero ou algo do tipo
 	}
 	
-	public void atualizarView() {
-		//função para atualizar o view qnd acontecer algum movimento
+	public void atualizarView(int x, int y) {
+		//funï¿½ï¿½o para atualizar o view qnd acontecer algum movimento
 	}
 	
 	public void conectaPecaCelula(int x, int y, Peca peca) {
