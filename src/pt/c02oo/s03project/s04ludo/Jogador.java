@@ -2,13 +2,14 @@ package pt.c02oo.s03project.s04ludo;
 
 public class Jogador { //acho que ainda deva ter uma interface superior 
 	//diferente pra máquina e pra pessoa
-	private Peca peca1, peca2, peca3, peca4;
-	private String cor;
-	private Tabuleiro tabuleiro;
+	protected Peca peca1, peca2, peca3, peca4;
+	protected String cor;
+	protected Tabuleiro tabuleiro;
 	
 	public Jogador(String cor, Tabuleiro tabuleiro) {
 		this.cor = cor;
 		this.tabuleiro = tabuleiro;
+		inicializarPecas(); //pode chamar aqui sera? ficar atenta para erros
 	}
 	
 	/* acho que n precisa dessa funcao?
@@ -58,11 +59,14 @@ public class Jogador { //acho que ainda deva ter uma interface superior
 	}
 	
 	public void fazerJogada(int numDado) { //essa funcao deve ser responsavel por deixar o jogador selecionar uma peca dentre as disponiveis (pecas na base n podem andar por exemplo)
-								//essa funcao pode ja inclusive chamar a mover
+		//aqui entra ou a estratégia da máquina ou a escolha de que peca vai andar da pessoa						
+		//essa funcao pode ja inclusive chamar a mover
 	}
 	
-	public void mover() {} //aqui entra ou a estratégia da máquina ou a escolha de que peca vai andar da pessoa
+	public void mover(Peca peca) {} 
 	//essa funcao deve ser responsavel por mover a peca selecionada pelo jogador
+	//chamar aquela função moverPeca do tabuleiro?
+	//lembrar de chamar a funcao de atualizar o view
 
 	
 }

@@ -32,9 +32,6 @@ public class MaquinaAleatoria extends Maquina{
         }
         
     }
-
-    public void mover(Peca peca) {} 
-    //amiga acho melhor a gente so mover a peca aqui, toda a estrategia ser no fazerJogada
-    //pq ai essa mover fica igual p todos os jogadores (pessoa ou maquina), so move a peca (e ai implementa essa logo em jogador) 
+ 
     
 }

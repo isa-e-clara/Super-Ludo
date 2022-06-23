@@ -45,6 +45,10 @@ public class Controle {
 		}
 	}
 	
+	public void iniciarJogo() {
+		
+	}
+	
 	public void definirProximoJogador() {
 		if(proximoJogador + 1 <= qtdJogadores)
 			proximoJogador += 1;
