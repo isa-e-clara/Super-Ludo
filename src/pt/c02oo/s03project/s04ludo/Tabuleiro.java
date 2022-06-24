@@ -108,9 +108,9 @@ public class Tabuleiro {
 		Celula celulaChegada = celulas[peca.getX()][peca.getY()];
 
 		for (int i = 0; i < numDado; i++) {
-			if (celulaChegada.getProxX() != -1 && celulaChegada.getProxY() != -1) 
+			if (celulaChegada.getProxX() >= 0 && celulaChegada.getProxY() >= 0) 
 				celulaChegada = celulas[celulaChegada.getProxX()][celulaChegada.getProxY()];
-			else //significa que a peça com certeza vai entrar no caminho que só ela pode, então ela sempre vai poder mover para lá
+			else //significa que a peça com certeza vai estar no caminho que só ela pode, então ela sempre vai poder mover para lá
 				return null;
 		}
 		return celulaChegada;

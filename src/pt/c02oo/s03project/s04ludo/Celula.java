@@ -16,6 +16,12 @@ public class Celula {
 		peca3 = null;
 		peca4 = null;
 		ehEstrela = false;
+		proximaX = -3; //quando ganhar, não definimos a próxima, ou seja, sempre será -3
+		proximaY = -3;
+	}
+
+	public String getCor() {
+		return cor;
 	}
 
 	public void setProximaX(int proximaX) {
@@ -109,6 +115,7 @@ public class Celula {
 	public Peca getPeca4() {
 		return peca4;
 	}
+
 	public boolean getEhEstrela() {
 		return ehEstrela;
 	}
