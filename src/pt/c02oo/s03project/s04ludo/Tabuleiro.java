@@ -103,6 +103,18 @@ public class Tabuleiro {
 	public Celula getCelula( int x, int y) {
 		return celulas[x][y];
 	}
+
+	public Celula getCelulaChegada (Peca peca, int numDado) {
+		Celula celulaChegada = celulas[peca.getX()][peca.getY()];
+
+		for (int i = 0; i < numDado; i++) {
+			if (celulaChegada.getProxX() != -1 && celulaChegada.getProxY() != -1) 
+				celulaChegada = celulas[celulaChegada.getProxX()][celulaChegada.getProxY()];
+			else //significa que a peça com certeza vai entrar no caminho que só ela pode, então ela sempre vai poder mover para lá
+				return null;
+		}
+		return celulaChegada;
+	}
 	
 	public void come (int x, int y) {
 		while (celulas[x][y].retornaPeca() != null) {

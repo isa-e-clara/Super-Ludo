@@ -63,43 +63,53 @@ public class Jogador { //acho que ainda deva ter uma interface superior
 	
 	public void fazerJogada(int numDado) { 
 		//essa funcao deve ser responsavel por deixar o jogador selecionar uma peca dentre as disponiveis (pecas na base n podem andar por exemplo)
-		//aqui entra ou a estrat�gia da m�quina ou a escolha de que peca vai andar da pessoa (na heranca)						
+		//aqui entra ou a estrat�gia da m�quina ou a escolha de que peca vai andar da pessoa (na heranca)			
+		
+		//ver se pra onde vai eh estrela, se sim, checar se tem alguem la e ver a cor da celula estrela. vou fazer isso assim que chgar em casa
+		//boolean podeAndar = tabuleiro.getCelulaChegada(peca1, numDado).ehEstrela == false || (tabuleiro.getCelulaChegada(peca1, numDado).ehEstrela &&)
 
-        if (peca1.getEstaNaBase() == false) {
+		if (peca1.getGanhou() == false) { //&& (tabuleiro.getCelulaChegada(peca1, numDado) == null)) 
+			if (peca1.getEstaNaBase() == false) {
             pecasDisponiveis.add(peca1);
             qtdPecasDisponiveis++;
         }
-        else{
-            pecasBase.add(peca1);
-            qtdPecasBase++;
-        }
-        if (peca2.getEstaNaBase() == false) {
-            pecasDisponiveis.add(peca2);
-            qtdPecasDisponiveis++;
-        }
-        else{
-            pecasBase.add(peca2);
-            qtdPecasBase++;
-        }
-        if (peca3.getEstaNaBase() == false) {
-            pecasDisponiveis.add(peca3);
-            qtdPecasDisponiveis++;
-        }
-        else{
-            pecasBase.add(peca3);
-            qtdPecasBase++;
-        }
-        if (peca4.getEstaNaBase() == false) {
-            pecasDisponiveis.add(peca4);
-            qtdPecasDisponiveis++;
-        }
-        else{
-            pecasBase.add(peca4);
-            qtdPecasBase++;
-        }
-        
+			else{
+				pecasBase.add(peca1);
+				qtdPecasBase++;
+			}
+		}
+		if (peca2.getGanhou() == false) { 
+			if (peca2.getEstaNaBase() == false) {
+				pecasDisponiveis.add(peca2);
+				qtdPecasDisponiveis++;
+			}
+			else{
+				pecasBase.add(peca2);
+				qtdPecasBase++;
+			}
+		}
+		if (peca3.getGanhou() == false) { 
+			if (peca3.getEstaNaBase() == false) {
+				pecasDisponiveis.add(peca3);
+				qtdPecasDisponiveis++;
+			}
+			else{
+				pecasBase.add(peca3);
+				qtdPecasBase++;
+			}
+		}
+		if (peca4.getGanhou() == false) { 
+			if (peca4.getEstaNaBase() == false) {
+				pecasDisponiveis.add(peca4);
+				qtdPecasDisponiveis++;
+			}
+			else{
+				pecasBase.add(peca4);
+				qtdPecasBase++;
+			}
+		}
         //checar se alguma das pecas vai pra uma celula estrela que ja esta ocupada por outra cor, se sim tira das pecas disponiveis 
-        //checar se eh uma peca que ja ganhou
+        
     }
 	
 	public boolean jogadorGanhou() {

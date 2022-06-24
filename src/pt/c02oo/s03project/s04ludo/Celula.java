@@ -1,11 +1,11 @@
 package pt.c02oo.s03project.s04ludo;
 
 public class Celula {
-	private Peca peca1, peca2, peca3, peca4; //pode ter no maximo quatro pecas empilhadas do mesmo time
-	private int x, y;
-	private int proximaX, proximaY;
-	private String cor;
-	boolean ehEstrela;
+	protected Peca peca1, peca2, peca3, peca4; //pode ter no maximo quatro pecas empilhadas do mesmo time
+	protected int x, y;
+	protected int proximaX, proximaY;
+	protected String cor;
+	protected boolean ehEstrela;
 
 	public Celula(String cor, int x, int y) {
 		this.cor = cor;
@@ -108,6 +108,9 @@ public class Celula {
 
 	public Peca getPeca4() {
 		return peca4;
+	}
+	public boolean getEhEstrela() {
+		return ehEstrela;
 	}
 
 }
