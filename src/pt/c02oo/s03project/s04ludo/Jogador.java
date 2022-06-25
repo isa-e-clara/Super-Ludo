@@ -1,5 +1,4 @@
 package pt.c02oo.s03project.s04ludo;
-
 import java.util.ArrayList;
 
 public class Jogador { //acho que ainda deva ter uma interface superior 
@@ -16,13 +15,14 @@ public class Jogador { //acho que ainda deva ter uma interface superior
 		this.cor = cor;
 		this.tabuleiro = tabuleiro;
 		//listinha com as pecas disponiveis e as da base
-		ArrayList<Peca> pecasDisponiveis = new ArrayList(); //ficar de olho nos arrays
-        ArrayList<Peca> pecasBase = new ArrayList();
+		pecasDisponiveis = new ArrayList(); //ficar de olho nos arrays
+        pecasBase = new ArrayList();
 		qtdPecasBase = 0;
 		qtdPecasDisponiveis = 0;
 		ganhou = false;
 		inicializarPecas(); //pode chamar aqui sera? ficar atenta para erros
 	}
+
 
 	public void inicializarPecas() { 
 		if(cor == "vermelho") {
@@ -60,7 +60,8 @@ public class Jogador { //acho que ainda deva ter uma interface superior
 		tabuleiro.conectaPecaCelula(peca3.getX(), peca3.getY(), peca3);
 		tabuleiro.conectaPecaCelula(peca4.getX(), peca4.getY(), peca4);	
 	}
-	
+
+
 	public void fazerJogada(int numDado) { 
 		// a funcao monta duas listas, uma de pecas na base e outra de pecas do tabueleiro que podem andar
 		//faremos sobrecarga dessa função. nos herdeiros, disponibilizaremos todas as pecas do tabuleiro para escolha
@@ -152,5 +153,8 @@ public class Jogador { //acho que ainda deva ter uma interface superior
 		if (celula.getPeca4() != null)
 			tabuleiro.moverPeca(celula.getPeca4(), numDado);
 	} 
+	public Peca getPeca1(){
+		return peca1;
+	}
 	
 }

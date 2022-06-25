@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class Tabuleiro {
 	private Celula[][] celulas;
-	
+	private View view;
 	public Tabuleiro() {
 		celulas = new Celula[15][15];
 		for(int i = 0; i < 15; i++)
@@ -104,6 +104,14 @@ public class Tabuleiro {
 		return celulas[x][y];
 	}
 
+	public void conectaView(View view) {
+		this.view = view;
+	}
+
+	public View getView() {
+		return view;
+	}
+
 	public Celula getCelulaChegada (Peca peca, int numDado) {
 		Celula celulaChegada = celulas[peca.getX()][peca.getY()];
 
@@ -123,7 +131,7 @@ public class Tabuleiro {
 			celulas[pecaComida.getBaseX()][pecaComida.getBaseY()].conectaPeca(pecaComida);
 			pecaComida.setX(pecaComida.getBaseX());
 			pecaComida.setY(pecaComida.getBaseY());
-			atualizarView(pecaComida.getBaseX(),pecaComida.getBaseY()); //eh aqui mesmo??
+			atualizarView(pecaComida, pecaComida.getBaseX(),pecaComida.getBaseY()); //eh aqui mesmo??
 		}		
 	}
 
@@ -140,7 +148,7 @@ public class Tabuleiro {
 				ehDupla = true;
 			}
 			
-			atualizarView(celulas[x][y].getProxX(), celulas[x][y].getProxY()); //eh aqui mesmo??
+			atualizarView(peca, celulas[x][y].getProxX(), celulas[x][y].getProxY()); //eh aqui mesmo??
 			
 			//esse i == numDado - 1 eh pra checar se eh a ultima andada
 			if (i == numDado - 1 && (celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()].getCorPeca() != peca.getCor()) ) { //vai comer
@@ -180,8 +188,9 @@ public class Tabuleiro {
 		//funcao para atualizar o view do dado qnd mudar o numero ou algo do tipo
 	}
 	
-	public void atualizarView(int x, int y) {
+	public void atualizarView(Peca peca, int x, int y) {
 		//funcao para atualizar o view qnd acontecer algum movimento
+		peca.update(x, y);
 	}
 	
 	public void conectaPecaCelula(int x, int y, Peca peca) {

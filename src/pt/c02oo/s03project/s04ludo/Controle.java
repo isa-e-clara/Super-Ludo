@@ -11,6 +11,7 @@ public class Controle {
 	private boolean fimDeJogo; //isso eh pra avisar pra main qnd o jogo terminou
 	private int numDado;
 	private ArrayList<Jogador> jogadores = new ArrayList<>();
+	private View view;
 	
 	public Controle(Tabuleiro tabuleiro) {
 		this.tabuleiro = tabuleiro;
@@ -22,8 +23,15 @@ public class Controle {
 		this.jogador4 = null;
 	}
 	
+	public void conectaView(View view) {
+		this.view = view;
+	}
+	
 	public String corSelecionada(int num) { //funcao para pegar a cor que a pessoa escolheu para jogar, nsei se deveria estar aqui e nem como fazer isso ainda, pois depende da interface
-		return "";							//num seria o numero do jogador
+		if (num ==1)
+			return "vermelho"; //lembrar de consertar
+		else
+			return "azul";						//num seria o numero do jogador
 	}										//colocar um if qnd for pra escolher a cor da maquina (random)
 	
 	public void criaJogadores() {
@@ -64,7 +72,7 @@ public class Controle {
 	}
 	
 	public int quantidadeJogadores() { //funcao para pegar da interface a qtd de jogadores
-		return 0;
+		return 2; //lembrar de mudar
 	}
 	
 	public int botEscolhido() { //funcao para pegar da interface contra qual maquina a pessoa quer jogar
@@ -72,7 +80,7 @@ public class Controle {
 	}
 	
 	public Jogador definirProximoJogador() {
-		if(jogadorAtual + 1 <= qtdJogadores) {
+		if(jogadorAtual + 1 < qtdJogadores) {
 			jogadorAtual += 1;
 			return (jogadores.get(jogadorAtual));	
 		} else {
@@ -111,9 +119,17 @@ public class Controle {
 		criaJogadores();
 		
 		while(fimDeJogo == false) {
+
 			jogar();
 		}
 		
+	}
+
+	public Jogador getJogador1() {
+		return jogador1;
+	}
+	public Jogador getJogador2() {
+		return jogador2;
 	}
 	
 }

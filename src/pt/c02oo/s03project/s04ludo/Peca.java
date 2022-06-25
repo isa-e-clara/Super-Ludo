@@ -1,6 +1,9 @@
 package pt.c02oo.s03project.s04ludo;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
-public class Peca {
+public class Peca extends JPanel{
 	private int numero;
 	private int x, y;
 	private Tabuleiro tabuleiro;
@@ -8,6 +11,8 @@ public class Peca {
 	private int baseX;
 	private int baseY;
 	private boolean ganhou;
+	private Image imagem;
+	private int xSpawn, ySpawn, altura, largura, dx, dy;
 	
 	
 	public Peca(int x, int y, int numero, String cor) {
@@ -18,12 +23,42 @@ public class Peca {
 		this.baseX = x;
 		this.baseY = y;
 		this.ganhou = false;
+		xSpawn = 48*(baseX) - 24;
+		ySpawn = 48*(baseY) - 24;
+		load();
 	}
 	
+	public Image getImage() {
+		return imagem;
+	}
+	
+	public void load() {
+		ImageIcon referencia = new ImageIcon("res\\peca.png");
+		imagem = referencia.getImage();
+
+		altura = imagem.getHeight(null);
+		largura = imagem.getWidth(null);
+	}
+
+	public void update(int dx, int dy) {
+		xSpawn = dx*48 - 24;
+		ySpawn = dy*48 - 24;
+		repaint();
+	}
+
+
 	public Tabuleiro getTabuleiro() {
 		return tabuleiro;
 	}
-	
+
+	public int getXSpawn() {
+		return xSpawn;
+	}
+
+	public int getYSpawn() {
+		return ySpawn;
+	}
+
 	public boolean getGanhou() {
 		return ganhou;
 	}
