@@ -1,9 +1,12 @@
 package pt.c02oo.s03project.s04ludo;
+import java.awt.Graphics2D;
 import java.util.Random;
 
 public class Tabuleiro {
 	private Celula[][] celulas;
 	private View view;
+	private Graphics2D grafico;
+
 	public Tabuleiro() {
 		celulas = new Celula[15][15];
 		for(int i = 0; i < 15; i++)
@@ -111,6 +114,14 @@ public class Tabuleiro {
 	public View getView() {
 		return view;
 	}
+	
+	public void conectaGrafico(Graphics2D graficos) {
+		this.grafico = graficos;
+	}
+	
+	public Graphics2D getGrafico() {
+		return grafico;
+	}
 
 	public Celula getCelulaChegada (Peca peca, int numDado) {
 		Celula celulaChegada = celulas[peca.getX()][peca.getY()];
@@ -173,6 +184,7 @@ public class Tabuleiro {
 			if(ehDupla == true) { //se era uma celula com duas opcoes de caminho
 				celulas[x][y].setProximaX(-1);
 				celulas[x][y].setProximaY(-1);
+				ehDupla = false;
 			}
 		}
 	}

@@ -17,6 +17,9 @@ public class Container extends JFrame{
     public static void main (String args[]) {
         Tabuleiro tabuleiro = new Tabuleiro();
         Controle controle = new Controle(tabuleiro);
+        controle.setQtdJogadores(2);
+        controle.criaJogadores();
+        
         View view = new View(controle);
         new Container(controle, view);
 

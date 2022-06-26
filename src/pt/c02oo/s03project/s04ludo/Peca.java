@@ -1,7 +1,10 @@
 package pt.c02oo.s03project.s04ludo;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 public class Peca extends JPanel{
 	private int numero;
@@ -23,8 +26,8 @@ public class Peca extends JPanel{
 		this.baseX = x;
 		this.baseY = y;
 		this.ganhou = false;
-		xSpawn = 48*(baseX) ;
-		ySpawn = 48*(baseY) ;
+		xSpawn = 48*(baseX);
+		ySpawn = 48*(baseY);
 		load();
 	}
 	
@@ -51,9 +54,17 @@ public class Peca extends JPanel{
 	}
 
 	public void update(int dx, int dy) {
-		xSpawn = dx*48 - 24;
-		ySpawn = dy*48 - 24;
-		repaint();
+		xSpawn = dx*48; //acho que eh sem o -24, pq no caso x=0 por ex, da negativo
+		ySpawn = dy*48;
+		tabuleiro.getView().updateUI();
+		//validate();
+		//repaint();
+		//SwingUtilities.updateComponentTreeUI(this);
+		//add(tabuleiro.getView());
+		//Graphics2D graficos = (Graphics2D) java.awt.Graphics;
+		//tabuleiro.getGrafico().drawImage(tabuleiro.getView().getFundo(), 0, 0, null);
+		//Graphics graphics = new Graphics();
+		//graphics.dispose();
 	}
 
 

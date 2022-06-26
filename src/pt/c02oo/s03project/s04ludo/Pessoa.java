@@ -9,7 +9,7 @@ public class Pessoa extends Jogador{
 
 	public void fazerJogada(int numDado) {
 		super.fazerJogada(numDado); 
-		mover(peca1, numDado);
+		mover(peca1, 4);
 	}
 
 	public void keyTyped(KeyEvent tecla) {

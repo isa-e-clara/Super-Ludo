@@ -23,6 +23,10 @@ public class Controle {
 		this.jogador4 = null;
 	}
 	
+	public Tabuleiro getTabuleiro() {
+		return tabuleiro;
+	}
+
 	public void conectaView(View view) {
 		this.view = view;
 	}
@@ -108,7 +112,25 @@ public class Controle {
 	
 	public void iniciarJogo() { //se tud tiver certo, a gnt so precisa criar um controle e chamar essa funcao na main
 		//lembrar de checar qnd o jogo acabar de vez
-		qtdJogadores = quantidadeJogadores();
+		//qtdJogadores = quantidadeJogadores();
+		//if(qtdJogadores == 1) {
+		//	modo = 1;
+		//	qtdJogadores += 1; //acrescentando a maquina na contagem dos jogadores
+		//	bot = botEscolhido();
+		//} else {
+		//	modo = 0;
+		//}
+		//criaJogadores();
+		
+		while(fimDeJogo == false) {
+
+			jogar();
+		}
+		
+	}
+
+	public void setQtdJogadores(int qtdJogadores) {
+		this.qtdJogadores = qtdJogadores;
 		if(qtdJogadores == 1) {
 			modo = 1;
 			qtdJogadores += 1; //acrescentando a maquina na contagem dos jogadores
@@ -116,13 +138,6 @@ public class Controle {
 		} else {
 			modo = 0;
 		}
-		criaJogadores();
-		
-		while(fimDeJogo == false) {
-
-			jogar();
-		}
-		
 	}
 
 	public Jogador getJogador1() {

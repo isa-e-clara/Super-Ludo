@@ -22,10 +22,14 @@ public class View extends JPanel {
         this.controle = controle;
     }
 
-    public void paint(Graphics g) {
+    public Image getFundo() {
+		return fundo;
+	}
+
+	public void paint(Graphics g) {
         Graphics2D graficos = (Graphics2D) g;
         graficos.drawImage(fundo, 0, 0, null);
-        //aqui em baixo o jogador 1 eh nulo, ainda n foi inicializado
+        controle.getTabuleiro().conectaGrafico(graficos);
         graficos.drawImage(controle.getJogador1().getPeca1().getImage(), controle.getJogador1().getPeca1().getXSpawn(), controle.getJogador1().getPeca1().getYSpawn(), this);
         g.dispose();
     }
