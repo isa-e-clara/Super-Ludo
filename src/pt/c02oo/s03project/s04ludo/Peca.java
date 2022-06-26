@@ -53,7 +53,7 @@ public class Peca extends JPanel{
 		largura = imagem.getWidth(null);
 	}
 
-	public void update(int dx, int dy) {
+	public void update(int dy, int dx) {
 		xSpawn = dx*48; //acho que eh sem o -24, pq no caso x=0 por ex, da negativo
 		ySpawn = dy*48;
 		tabuleiro.getView().updateUI();
