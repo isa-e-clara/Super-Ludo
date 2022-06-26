@@ -26,8 +26,8 @@ public class Peca extends JPanel{
 		this.baseX = x;
 		this.baseY = y;
 		this.ganhou = false;
-		xSpawn = 48*(baseX);
-		ySpawn = 48*(baseY);
+		xSpawn = 48*(baseY) + 13;
+		ySpawn = 48*(baseX) - 13;
 		load();
 	}
 	
@@ -54,8 +54,8 @@ public class Peca extends JPanel{
 	}
 
 	public void update(int dy, int dx) {
-		xSpawn = dx*48; //acho que eh sem o -24, pq no caso x=0 por ex, da negativo
-		ySpawn = dy*48;
+		xSpawn = dx*48 + 13; //acho que eh sem o -24, pq no caso x=0 por ex, da negativo
+		ySpawn = dy*48 - 13;
 		tabuleiro.getView().updateUI();
 		//validate();
 		//repaint();
@@ -130,7 +130,7 @@ public class Peca extends JPanel{
 		return cor;
 	}
 
-	public void defineProxima() { //define as proximas posicoes para as pecas que estao em casas com duas poss�veis pr�ximas
+	public void defineProxima(int x, int y) { //define as proximas posicoes para as pecas que estao em casas com duas poss�veis pr�ximas
 		if (x == 7 && y == 0) {
 			if (cor == "vermelho") 
 				tabuleiro.getCelula(7, 0).definirProxima(7,1);
@@ -150,7 +150,7 @@ public class Peca extends JPanel{
 				tabuleiro.getCelula(0,7).definirProxima(0,8);
 		}
 		else if (x == 14 && y == 7) {
-			if (cor == "verde") 
+			if (cor == "amarelo") 
 				tabuleiro.getCelula(14,7).definirProxima(13,7);
 			else
 				tabuleiro.getCelula(14,7).definirProxima(14,6);

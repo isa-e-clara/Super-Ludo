@@ -11,21 +11,25 @@ public class Pessoa extends Jogador{
 
 	public void fazerJogada(int numDado) {
 		super.fazerJogada(numDado); 
-	    System.out.println("Digite o numero da peca: ");
-	    Scanner entrada = new Scanner(System.in);
-	    char comando;
-	    comando = entrada.next().charAt(0);
-	    if(comando == '1')
-	    	mover(peca1, numDado);
-	    else if(comando == '2')
-	    	mover(peca2, numDado);
-	    else if(comando == '3')
-	    	mover(peca3, numDado);
-	    else if(comando == '4')
-	    	mover(peca4, numDado);
-	    else {
-	    	//erro
-	    }
+		if (peca1.getGanhou() == false)
+			mover(peca1, numDado);
+		else
+			mover(peca2, numDado);
+	    // System.out.println("Digite o numero da peca: ");
+	    // Scanner entrada = new Scanner(System.in);
+	    // char comando;
+	    // comando = entrada.next().charAt(0);
+	    // if(comando == '1')
+	    // 	mover(peca1, numDado);
+	    // else if(comando == '2')
+	    // 	mover(peca2, numDado);
+	    // else if(comando == '3')
+	    // 	mover(peca3, numDado);
+	    // else if(comando == '4')
+	    // 	mover(peca4, numDado);
+	    // else {
+	    // 	//erro
+	    //}
 	}
 
 	public void keyTyped(KeyEvent tecla) {

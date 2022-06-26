@@ -32,6 +32,13 @@ public class Celula {
 		this.proximaY = proximaY;
 	}
 
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
 
 	public int getProxY() {
 		return proximaY;

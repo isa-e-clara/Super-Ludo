@@ -66,11 +66,11 @@ public class Controle {
 			jogadores.add(jogador1);
 			jogador2 = new Pessoa(corSelecionada(2), tabuleiro);
 			jogadores.add(jogador2);
-			if(qtdJogadores == 3) {
+			if(qtdJogadores == 3 || qtdJogadores == 4) {
 				jogador3 = new Pessoa(corSelecionada(3), tabuleiro);
 				jogadores.add(jogador3);
 			}
-			else if(qtdJogadores == 4) {
+			if(qtdJogadores == 4) {
 				jogador4 = new Pessoa(corSelecionada(4), tabuleiro);
 				jogadores.add(jogador4);
 			}

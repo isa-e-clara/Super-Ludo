@@ -78,7 +78,7 @@ public class Tabuleiro {
 					else if(i == 14)
 						celulas[i][j].definirProxima(14, 7);
 					else
-						celulas[i][j].definirProxima(i + 1, 6);
+						celulas[i][j].definirProxima(i + 1, 8);
 				} else if((i == 7 && j == 0) || (i == 0 && j == 7) || (i == 7 && j == 14) || (i == 14 && j == 7)) {
 					celulas[i][j] = new Celula("null", i, j);
 					celulas[i][j].definirProxima(-1, -1); //a proxima posicao depende da cor de cada peca, fazer um if quando tiver movendo a peca para ver isso
@@ -124,13 +124,27 @@ public class Tabuleiro {
 	}
 
 	public Celula getCelulaChegada (Peca peca, int numDado) {
-		Celula celulaChegada = celulas[peca.getX()][peca.getY()];
-
+		Celula celulaProvisoria = null, celulaChegada = celulas[peca.getX()][peca.getY()];
+		boolean ehDupla = false;
 		for (int i = 0; i < numDado; i++) {
-			if (celulaChegada != null && celulaChegada.getProxX() >= 0 && celulaChegada.getProxY() >= 0) 
-				celulaChegada = celulas[celulaChegada.getProxX()][celulaChegada.getProxY()];
-			else //significa que a peça com certeza vai estar no caminho que só ela pode, então ela sempre vai poder mover para lá
-				return null;
+			if (celulaChegada != null) {
+				// if (celulaChegada.getProxX() ==)
+				if (celulaChegada.getProxX() == -1 && celulaChegada.getProxY() == -1) {
+					peca.defineProxima(celulaChegada.getX(), celulaChegada.getY());
+					ehDupla = true;
+					celulaProvisoria = celulaChegada;
+				}
+				if (celulaChegada.getProxX() >= 0 && celulaChegada.getProxY() >= 0) 
+					celulaChegada = celulas[celulaChegada.getProxX()][celulaChegada.getProxY()];
+				else //significa que a peça com certeza vai estar no caminho que só ela pode, então ela sempre vai poder mover para lá
+					return null;
+			}
+			if (ehDupla == true){
+				celulaProvisoria.setProximaX(-1);
+				celulaProvisoria.setProximaY(-1);
+				ehDupla = false;
+
+			}
 		}
 		return celulaChegada;
 	}
@@ -155,21 +169,23 @@ public class Tabuleiro {
 			int y = peca.getY();
 			
 			if(celulas[x][y].getProxX() == -1 && celulas[x][y].getProxY() == -1) { //casinha dupla
-				peca.defineProxima();
+				peca.defineProxima(x, y);
 				ehDupla = true;
 			}
 			
 			atualizarView(peca, celulas[x][y].getProxX(), celulas[x][y].getProxY()); //eh aqui mesmo??
 			
 			//esse i == numDado - 1 eh pra checar se eh a ultima andada
-			if (i == numDado - 1 && (celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()].getCorPeca() != peca.getCor()) ) { //vai comer
+			if (i == numDado - 1 && (celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()].getCorPeca() != peca.getCor()) && (celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()].getCorPeca() != "") ) { //vai comer
 				come(celulas[x][y].getProxX(),celulas[x][y].getProxY());	
 			}
 
 			//celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()].desconectaPeca(peca);
 			//desconectando a peca da celula antiga e conectando na nova
-			celulas[x][y].desconectaPeca(peca);
-			celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()].conectaPeca(peca);
+			if (celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()] != null) { //s´será null quando a peça já tiver ganhado
+				celulas[x][y].desconectaPeca(peca);
+				celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()].conectaPeca(peca);
+			}
 			
 			//alterando o x e y da peca para o da nova posicao
 			peca.setX(celulas[x][y].getProxX());
