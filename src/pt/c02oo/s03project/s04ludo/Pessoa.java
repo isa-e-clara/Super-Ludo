@@ -13,8 +13,12 @@ public class Pessoa extends Jogador{
 		super.fazerJogada(numDado); 
 		if (peca1.getGanhou() == false)
 			mover(peca1, numDado);
-		else
+		else if (peca2.getGanhou() == false)
 			mover(peca2, numDado);
+		else if (peca3.getGanhou() == false)
+			mover(peca3, numDado);
+		else if (peca4.getGanhou() == false)
+			mover(peca4, numDado);
 	    // System.out.println("Digite o numero da peca: ");
 	    // Scanner entrada = new Scanner(System.in);
 	    // char comando;

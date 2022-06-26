@@ -128,7 +128,6 @@ public class Tabuleiro {
 		boolean ehDupla = false;
 		for (int i = 0; i < numDado; i++) {
 			if (celulaChegada != null) {
-				// if (celulaChegada.getProxX() ==)
 				if (celulaChegada.getProxX() == -1 && celulaChegada.getProxY() == -1) {
 					peca.defineProxima(celulaChegada.getX(), celulaChegada.getY());
 					ehDupla = true;
@@ -164,44 +163,56 @@ public class Tabuleiro {
 		//vamos ignorar a barreira
 		//checar se pode mover vai ser la no fazer jogada
 		boolean ehDupla = false;
+
 		for (int i = 0; i < numDado; i++) {
+
 			int x = peca.getX();
 			int y = peca.getY();
-			
-			if(celulas[x][y].getProxX() == -1 && celulas[x][y].getProxY() == -1) { //casinha dupla
-				peca.defineProxima(x, y);
-				ehDupla = true;
-			}
-			
-			atualizarView(peca, celulas[x][y].getProxX(), celulas[x][y].getProxY()); //eh aqui mesmo??
-			
-			//esse i == numDado - 1 eh pra checar se eh a ultima andada
-			if (i == numDado - 1 && (celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()].getCorPeca() != peca.getCor()) && (celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()].getCorPeca() != "") ) { //vai comer
-				come(celulas[x][y].getProxX(),celulas[x][y].getProxY());	
-			}
 
-			//celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()].desconectaPeca(peca);
-			//desconectando a peca da celula antiga e conectando na nova
-			if (celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()] != null) { //s´será null quando a peça já tiver ganhado
-				celulas[x][y].desconectaPeca(peca);
-				celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()].conectaPeca(peca);
+			if (celulas[x][y] != null) {
+
+				if(celulas[x][y].getProxX() == -1 && celulas[x][y].getProxY() == -1) { //casinha dupla
+					peca.defineProxima(x, y);
+					ehDupla = true;
+				}
+				
+				atualizarView(peca, celulas[x][y].getProxX(), celulas[x][y].getProxY()); //eh aqui mesmo??
+
+				if (celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()] != null) { //s´será null quando a peça já tiver ganhado
+					//esse i == numDado - 1 eh pra checar se eh a ultima andada
+					if (i == numDado - 1 && (celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()].getCorPeca() != peca.getCor()) && (celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()].getCorPeca() != "") ) { //vai comer
+						come(celulas[x][y].getProxX(),celulas[x][y].getProxY());	
+					}
+	
+					//celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()].desconectaPeca(peca);
+					//desconectando a peca da celula antiga e conectando na nova
+				
+					celulas[x][y].desconectaPeca(peca);
+					celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()].conectaPeca(peca);
+				}
+				
+
+				//alterando o x e y da peca para o da nova posicao
+
+				peca.setX(celulas[x][y].getProxX());
+				peca.setY(celulas[x][y].getProxY());
+
+				if(ehDupla == true) { //se era uma celula com duas opcoes de caminho
+					celulas[x][y].setProximaX(-1);
+					celulas[x][y].setProximaY(-1);
+					ehDupla = false;
+				}
 			}
 			
-			//alterando o x e y da peca para o da nova posicao
-			peca.setX(celulas[x][y].getProxX());
-			peca.setY(celulas[x][y].getProxY());
+			
+					
 			
 			//verificando se chegou na celula final (ganhou):
 			if((peca.getX() == 7 && peca.getY() == 6) || (peca.getX() == 6 && peca.getY() == 7) || (peca.getX() == 7 && peca.getY() == 8) || (peca.getX() == 8 && peca.getY() == 7)) {
 				peca.setGanhou(true);
 				break;
 			}
-			
-			if(ehDupla == true) { //se era uma celula com duas opcoes de caminho
-				celulas[x][y].setProximaX(-1);
-				celulas[x][y].setProximaY(-1);
-				ehDupla = false;
-			}
+		
 		}
 	}
 	

@@ -76,7 +76,10 @@ public class Jogador { //acho que ainda deva ter uma interface superior
 		//quando celulaChegada eh null,significa que vai entrar no corredor de chegada ou que vai ganhar se mover
 
 		celulaChegada = tabuleiro.getCelulaChegada(peca1, numDado);
-		podeAndar = (celulaChegada == null) || (celulaChegada.ehEstrela == false) || (celulaChegada.ehEstrela == true && celulaChegada.getCorPeca() == "") || (celulaChegada.ehEstrela == true && celulaChegada.getCorPeca() == cor) || (celulaChegada.ehEstrela == true && celulaChegada.getCor() == cor);
+		if (celulaChegada == null)
+			podeAndar = true;
+		else
+			podeAndar = (celulaChegada.ehEstrela == false) || (celulaChegada.ehEstrela == true && celulaChegada.getCorPeca() == "") || (celulaChegada.ehEstrela == true && celulaChegada.getCorPeca() == cor) || (celulaChegada.ehEstrela == true && celulaChegada.getCor() == cor);
 
 		if (peca1.getGanhou() == false && podeAndar == true) { 
 			if (peca1.getEstaNaBase() == false) {
@@ -90,7 +93,10 @@ public class Jogador { //acho que ainda deva ter uma interface superior
 		}
 
 		celulaChegada = tabuleiro.getCelulaChegada(peca2, numDado);
-		podeAndar = (celulaChegada == null) || (celulaChegada.ehEstrela == false) || (celulaChegada.ehEstrela == true && celulaChegada.getCorPeca() == "") || (celulaChegada.ehEstrela == true && celulaChegada.getCorPeca() == cor) || (celulaChegada.ehEstrela == true && celulaChegada.getCor() == cor);
+		if (celulaChegada == null)
+			podeAndar = true;
+		else
+			podeAndar = (celulaChegada.ehEstrela == false) || (celulaChegada.ehEstrela == true && celulaChegada.getCorPeca() == "") || (celulaChegada.ehEstrela == true && celulaChegada.getCorPeca() == cor) || (celulaChegada.ehEstrela == true && celulaChegada.getCor() == cor);
 
 		if (peca2.getGanhou() == false && podeAndar == true) { 
 			if (peca2.getEstaNaBase() == false) {
@@ -104,7 +110,10 @@ public class Jogador { //acho que ainda deva ter uma interface superior
 		}
 
 		celulaChegada = tabuleiro.getCelulaChegada(peca3, numDado);
-		podeAndar = (celulaChegada == null) || (celulaChegada.ehEstrela == false) || (celulaChegada.ehEstrela == true && celulaChegada.getCorPeca() == "") || (celulaChegada.ehEstrela == true && celulaChegada.getCorPeca() == cor) || (celulaChegada.ehEstrela == true && celulaChegada.getCor() == cor);
+		if (celulaChegada == null)
+			podeAndar = true;
+		else
+			podeAndar = (celulaChegada.ehEstrela == false) || (celulaChegada.ehEstrela == true && celulaChegada.getCorPeca() == "") || (celulaChegada.ehEstrela == true && celulaChegada.getCorPeca() == cor) || (celulaChegada.ehEstrela == true && celulaChegada.getCor() == cor);
 
 		if (peca3.getGanhou() == false && podeAndar == true) { 
 			if (peca3.getEstaNaBase() == false) {
@@ -118,7 +127,10 @@ public class Jogador { //acho que ainda deva ter uma interface superior
 		}
 
 		celulaChegada = tabuleiro.getCelulaChegada(peca4, numDado);
-		podeAndar = (celulaChegada == null) || (celulaChegada.ehEstrela == false) || (celulaChegada.ehEstrela == true && celulaChegada.getCorPeca() == "") || (celulaChegada.ehEstrela == true && celulaChegada.getCorPeca() == cor) || (celulaChegada.ehEstrela == true && celulaChegada.getCor() == cor);
+		if (celulaChegada == null)
+			podeAndar = true;
+		else
+			podeAndar = (celulaChegada.ehEstrela == false) || (celulaChegada.ehEstrela == true && celulaChegada.getCorPeca() == "") || (celulaChegada.ehEstrela == true && celulaChegada.getCorPeca() == cor) || (celulaChegada.ehEstrela == true && celulaChegada.getCor() == cor);
 
 		if (peca4.getGanhou() == false && podeAndar == true) { 
 			if (peca4.getEstaNaBase() == false) {
