@@ -14,7 +14,7 @@ public class View extends JPanel {
 
     public View(Controle controle) {
         this.controle = controle;
-        ImageIcon referencia = new ImageIcon("res\\tabuleiro.jpg");
+        ImageIcon referencia = new ImageIcon("res\\tabuleiro_novo.png");
         fundo = referencia.getImage();
     }
 
@@ -25,6 +25,7 @@ public class View extends JPanel {
     public void paint(Graphics g) {
         Graphics2D graficos = (Graphics2D) g;
         graficos.drawImage(fundo, 0, 0, null);
+        //aqui em baixo o jogador 1 eh nulo, ainda n foi inicializado
         graficos.drawImage(controle.getJogador1().getPeca1().getImage(), controle.getJogador1().getPeca1().getXSpawn(), controle.getJogador1().getPeca1().getYSpawn(), this);
         g.dispose();
     }

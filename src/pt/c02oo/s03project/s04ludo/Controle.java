@@ -128,6 +128,7 @@ public class Controle {
 	public Jogador getJogador1() {
 		return jogador1;
 	}
+	
 	public Jogador getJogador2() {
 		return jogador2;
 	}

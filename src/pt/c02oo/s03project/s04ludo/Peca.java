@@ -23,8 +23,8 @@ public class Peca extends JPanel{
 		this.baseX = x;
 		this.baseY = y;
 		this.ganhou = false;
-		xSpawn = 48*(baseX) - 24;
-		ySpawn = 48*(baseY) - 24;
+		xSpawn = 48*(baseX) ;
+		ySpawn = 48*(baseY) ;
 		load();
 	}
 	
@@ -33,7 +33,17 @@ public class Peca extends JPanel{
 	}
 	
 	public void load() {
-		ImageIcon referencia = new ImageIcon("res\\peca.png");
+		ImageIcon referencia;
+		if (cor == "vermelho")
+			referencia = new ImageIcon("res\\pecaVermelha.PNG");
+		else if (cor == "azul")
+			referencia = new ImageIcon("res\\pecaAzul.PNG");
+		else if (cor == "verde")
+			referencia = new ImageIcon("res\\pecaVerde.PNG");
+		else if (cor == "amarelo")
+			referencia = new ImageIcon("res\\pecaAmarela.PNG");
+		else //lembrar de consertar, tem q dar erro
+			referencia = new ImageIcon("res\\pecaAmarela.PNG");
 		imagem = referencia.getImage();
 
 		altura = imagem.getHeight(null);
