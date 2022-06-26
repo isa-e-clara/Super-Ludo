@@ -20,7 +20,7 @@ public class Jogador { //acho que ainda deva ter uma interface superior
 		qtdPecasBase = 0;
 		qtdPecasDisponiveis = 0;
 		ganhou = false;
-		inicializarPecas(); //pode chamar aqui sera? ficar atenta para erros
+		inicializarPecas(); 
 	}
 
 
@@ -153,6 +153,22 @@ public class Jogador { //acho que ainda deva ter uma interface superior
 		if (celula.getPeca4() != null)
 			tabuleiro.moverPeca(celula.getPeca4(), numDado);
 	} 
+	
+	public Peca getPeca2() {
+		return peca2;
+	}
+
+
+	public Peca getPeca3() {
+		return peca3;
+	}
+
+
+	public Peca getPeca4() {
+		return peca4;
+	}
+
+
 	public Peca getPeca1(){
 		return peca1;
 	}

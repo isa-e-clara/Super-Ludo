@@ -32,12 +32,24 @@ public class Controle {
 	}
 	
 	public String corSelecionada(int num) { //funcao para pegar a cor que a pessoa escolheu para jogar, nsei se deveria estar aqui e nem como fazer isso ainda, pois depende da interface
-		if (num ==1)
+		if (num == 1)
 			return "vermelho"; //lembrar de consertar
-		else
-			return "azul";						//num seria o numero do jogador
+		else if(num == 2)
+			return "amarelo"; //num seria o numero do jogador
+		else if(num == 3)
+			return "verde";
+		else //if(num == 4)
+			return "azul";
 	}										//colocar um if qnd for pra escolher a cor da maquina (random)
 	
+	public Jogador getJogador3() {
+		return jogador3;
+	}
+
+	public Jogador getJogador4() {
+		return jogador4;
+	}
+
 	public void criaJogadores() {
 		if(modo == 1) {
 			jogador1 = new Pessoa(corSelecionada(1), tabuleiro);

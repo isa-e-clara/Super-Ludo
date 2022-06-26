@@ -41,7 +41,7 @@ public class Peca extends JPanel{
 			referencia = new ImageIcon("res\\pecaVermelha.PNG");
 		else if (cor == "azul")
 			referencia = new ImageIcon("res\\pecaAzul.PNG");
-		else if (cor == "verde")
+		else if (cor == "verde") 
 			referencia = new ImageIcon("res\\pecaVerde.PNG");
 		else if (cor == "amarelo")
 			referencia = new ImageIcon("res\\pecaAmarela.PNG");
