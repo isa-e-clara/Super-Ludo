@@ -26,8 +26,8 @@ public class Peca extends JPanel{
 		this.baseX = x;
 		this.baseY = y;
 		this.ganhou = false;
-		xSpawn = 48*(baseY) + 13;
-		ySpawn = 48*(baseX) - 13;
+		xSpawn = 48*(baseY) ;
+		ySpawn = 48*(baseX) -50;
 		load();
 	}
 	
@@ -37,14 +37,46 @@ public class Peca extends JPanel{
 	
 	public void load() {
 		ImageIcon referencia;
-		if (cor == "vermelho")
-			referencia = new ImageIcon("res\\pecaVermelha.PNG");
-		else if (cor == "azul")
-			referencia = new ImageIcon("res\\pecaAzul.PNG");
-		else if (cor == "verde") 
-			referencia = new ImageIcon("res\\pecaVerde.PNG");
-		else //if (cor == "amarelo")
-			referencia = new ImageIcon("res\\pecaAmarela.PNG");
+		if (cor == "vermelho"){
+			if (numero == 1)
+				referencia = new ImageIcon("res\\peca1vermelha.png");
+			else if (numero == 2)
+				referencia = new ImageIcon("res\\peca2vermelha.png");
+			else if (numero == 3)
+				referencia = new ImageIcon("res\\peca3vermelha.png");
+			else 
+				referencia = new ImageIcon("res\\peca4vermelha.png");
+		}
+		else if (cor == "azul"){
+			if (numero == 1)
+				referencia = new ImageIcon("res\\peca1azul.png");
+			else if (numero == 2)
+				referencia = new ImageIcon("res\\peca2azul.png");
+			else if (numero == 3)
+				referencia = new ImageIcon("res\\peca3azul.png");
+			else 
+				referencia = new ImageIcon("res\\peca4azul.png");
+		}
+		else if (cor == "verde") {
+			if (numero == 1)
+				referencia = new ImageIcon("res\\peca1verde.png");
+			else if (numero == 2)
+				referencia = new ImageIcon("res\\peca2verde.png");
+			else if (numero == 3)
+				referencia = new ImageIcon("res\\peca3verde.png");
+			else 
+				referencia = new ImageIcon("res\\peca4verde.png");
+		}
+		else{
+			if (numero == 1)
+				referencia = new ImageIcon("res\\peca1amarela.png");
+			else if (numero == 2)
+				referencia = new ImageIcon("res\\peca2amarela.png");
+			else if (numero == 3)
+				referencia = new ImageIcon("res\\peca3amarela.png");
+			else 
+				referencia = new ImageIcon("res\\peca4amarela.png");
+		}
 		imagem = referencia.getImage();
 
 		altura = imagem.getHeight(null); //precisa?
@@ -52,8 +84,8 @@ public class Peca extends JPanel{
 	}
 
 	public void update(int dy, int dx) {
-		xSpawn = dx*48 + 13; //acho que eh sem o -24, pq no caso x=0 por ex, da negativo
-		ySpawn = dy*48 - 13;
+		xSpawn = dx*48; //acho que eh sem o -24, pq no caso x=0 por ex, da negativo
+		ySpawn = dy*48 - 50;
 		tabuleiro.getView().updateUI();
 		//validate();
 		//repaint();
