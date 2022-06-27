@@ -6,15 +6,17 @@ public class AppSuperLudo {
     public static void main (String args[]) {
         Tabuleiro tabuleiro = Tabuleiro.getInstance();
         Controle controle = new Controle(tabuleiro);
+        View view = new View(controle);
+        tabuleiro.conectaView(view);
 
         controle.definirQtdJogadores();;
         controle.criaJogadores();
         
-        View view = new View(controle);
+        //View view = new View(controle);
         new Frame(view);
 
         controle.conectaView(view);
-        tabuleiro.conectaView(view);
+        //tabuleiro.conectaView(view);
         
         controle.iniciarJogo();
         

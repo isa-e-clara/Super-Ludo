@@ -8,7 +8,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 
-public class View extends JPanel {
+public class View extends JPanel implements Observer{
     private Image fundo;
     private Controle controle;
 	private Image dado1 = (new ImageIcon("res\\1.jpg")).getImage(); 
@@ -31,6 +31,10 @@ public class View extends JPanel {
     public Image getFundo() {
 		return fundo;
 	}
+
+    public void update() {
+        updateUI();
+    }
 
 	public void paint(Graphics g) {
         Graphics2D graficos = (Graphics2D) g;

@@ -2,11 +2,13 @@ package pt.c02oo.s03project.s04ludo;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-public class Peca extends JPanel{
+public class Peca extends JPanel implements Observed{
 	private int numero;
 	private int x, y;
 	private Tabuleiro tabuleiro;
@@ -16,6 +18,7 @@ public class Peca extends JPanel{
 	private boolean ganhou;
 	private Image imagem;
 	private int xSpawn, ySpawn, altura, largura, dx, dy;
+	private ArrayList<Observer> observers;
 	
 	
 	public Peca(int x, int y, int numero, String cor) {
@@ -26,8 +29,9 @@ public class Peca extends JPanel{
 		this.baseX = x;
 		this.baseY = y;
 		this.ganhou = false;
-		xSpawn = 48*(baseY) ;
-		ySpawn = 48*(baseX) -50;
+		xSpawn = 48*(baseY);
+		ySpawn = 48*(baseX) - 50;
+		this.observers = new ArrayList<>();
 		load();
 	}
 	
@@ -83,20 +87,22 @@ public class Peca extends JPanel{
 		largura = imagem.getWidth(null);
 	}
 
+
 	public void update(int dy, int dx) {
-		xSpawn = dx*48; //acho que eh sem o -24, pq no caso x=0 por ex, da negativo
+		xSpawn = dx*48; 
 		ySpawn = dy*48 - 50;
-		tabuleiro.getView().updateUI();
-		//validate();
-		//repaint();
-		//SwingUtilities.updateComponentTreeUI(this);
-		//add(tabuleiro.getView());
-		//Graphics2D graficos = (Graphics2D) java.awt.Graphics;
-		//tabuleiro.getGrafico().drawImage(tabuleiro.getView().getFundo(), 0, 0, null);
-		//Graphics graphics = new Graphics();
-		//graphics.dispose();
+		notificarObservadores();
 	}
 
+	public void registrar(Observer obj) {
+		if(!observers.contains(obj)) observers.add(obj);
+	}
+
+	public void notificarObservadores() {
+		for (Observer obj : this.observers) {
+			obj.update();
+		}
+	}
 
 	public Tabuleiro getTabuleiro() {
 		return tabuleiro;
@@ -154,6 +160,7 @@ public class Peca extends JPanel{
 
 	public void conectaTabuleiro(Tabuleiro tabuleiro) {
 		this.tabuleiro = tabuleiro;
+		registrar(tabuleiro.getView());
 	}
 
 	public String getCor() {
