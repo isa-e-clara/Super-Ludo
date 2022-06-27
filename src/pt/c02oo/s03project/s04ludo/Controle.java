@@ -90,10 +90,16 @@ public class Controle {
 	}
 	
 	
-	public int botEscolhido() { //funcao para pegar da interface contra qual maquina a pessoa quer jogar
+	public void botEscolhido() { //funcao para pegar da interface contra qual maquina a pessoa quer jogar
 		String[] options = {"Aleatoria", "Inteligente", "Rapida"};
-        int modo = (JOptionPane.showOptionDialog(null, "Seleciona o bot contra qual deseja jogar", "Quase la!", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, null));
-		return modo;				// 0 para aleatoria, 1 para inteligente, 2 para rapida
+		try {
+			bot = (JOptionPane.showOptionDialog(null, "Seleciona o bot contra qual deseja jogar", "Quase la!", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, null));
+			if(bot == -1)
+				throw new OpcaoVaziaBotException();			
+		} catch (OpcaoVaziaBotException e) {
+			botEscolhido();
+		}
+				// 0 para aleatoria, 1 para inteligente, 2 para rapida
 	}
 	
 	public Jogador definirProximoJogador() {
@@ -130,12 +136,24 @@ public class Controle {
 		JOptionPane.showMessageDialog(null, "Fim de jogo!");	
 	}
 
-	public void setQtdJogadores(int qtdJogadores) {
-		this.qtdJogadores = qtdJogadores; //colocar alguma exception aqui caso seja null (pessoa so fechou a janela e n selecionou nada)
+	public void definirQtdJogadores() {
+        String[] options = {"1", "2", "3", "4"};
+		try {
+			this.qtdJogadores = (JOptionPane.showOptionDialog(null, "Selecione o numero de jogadores", "Bem vindo!", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, null)) + 1;
+            if(this.qtdJogadores == 0) //fechou a tela sem selecionar nada
+                throw new OpcaoVaziaQtdJogadoresException();
+			
+		} catch (OpcaoVaziaQtdJogadoresException e) {
+			definirQtdJogadores();
+		}
+		setQtdJogadores();
+	}
+
+	public void setQtdJogadores() {
 		if(qtdJogadores == 1) {
 			modo = 1;
 			this.qtdJogadores += 1; //acrescentando a maquina na contagem dos jogadores
-			bot = botEscolhido();
+			botEscolhido();
 		} else {
 			modo = 0;
 		}

@@ -19,9 +19,7 @@ public class Container extends JFrame{
         Tabuleiro tabuleiro = new Tabuleiro();
         Controle controle = new Controle(tabuleiro);
 
-        String[] options = {"1", "2", "3", "4"};
-        int qtdJogadores = (JOptionPane.showOptionDialog(null, "Selecione o numero de jogadores", "Bem vindo!", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, null)) + 1;
-        controle.setQtdJogadores(qtdJogadores);
+        controle.definirQtdJogadores();;
         controle.criaJogadores();
         
         View view = new View(controle);

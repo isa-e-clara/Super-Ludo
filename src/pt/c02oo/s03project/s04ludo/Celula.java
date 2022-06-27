@@ -56,10 +56,8 @@ public class Celula {
 			this.peca2 = peca;
 		else if(numero == 3)
 			this.peca3 = peca;
-		else if(numero == 4)
-			this.peca4 = peca;
-		//else
-			//erro, exception		
+		else //if(numero == 4)
+			this.peca4 = peca;	
 	}
 	
 	public void desconectaPeca(Peca peca) {
@@ -70,10 +68,8 @@ public class Celula {
 			this.peca2 = null;
 		else if(numero == 3)
 			this.peca3 = null;
-		else if(numero == 4)
-			this.peca4 = null;
-		//else
-			//erro, exception				
+		else //if(numero == 4)
+			this.peca4 = null;			
 	}
 	
 	public void definirProxima(int i, int j) {
