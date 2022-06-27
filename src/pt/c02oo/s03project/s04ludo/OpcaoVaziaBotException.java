@@ -4,8 +4,10 @@ import javax.swing.JOptionPane;
 public class OpcaoVaziaBotException extends OpcaoVaziaException{
 
     public OpcaoVaziaBotException() {
-        String[] options = {"vamos la!"};
-        JOptionPane.showOptionDialog(null, "Por favor, selecione o bot contra qual deseja jogar.", "ERRO ", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, null);
+        String[] options = {"vamos la!", "fechar jogo"};
+        int i = JOptionPane.showOptionDialog(null, "Por favor, selecione o bot contra qual deseja jogar.", "ERRO ", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, null);
+        if(i == 1)
+            System. exit(0);   
     }
     
 }
