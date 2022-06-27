@@ -10,8 +10,9 @@ public class Tabuleiro {
 	private View view;
 	private Graphics2D grafico; //tirar
 	private int numDado; //se for 0 significa q ainda n comecou
+	private static final Tabuleiro instance = new Tabuleiro();
 
-	public Tabuleiro() {
+	private Tabuleiro() {
 		numDado = 0;
 
 		celulas = new Celula[15][15];
@@ -109,6 +110,11 @@ public class Tabuleiro {
 				
 	}
 	
+	
+	public static Tabuleiro getInstance() {
+		return instance;
+	}
+
 	public Celula getCelula( int x, int y) {
 		return celulas[x][y];
 	}
