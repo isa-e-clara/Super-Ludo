@@ -37,11 +37,11 @@ public class Controle {
 		if (num == 1)						//colocar um if qnd for pra escolher a cor da maquina (random)
 			return "vermelho"; 
 		else if(num == 2)
-			return "amarelo"; 
+			return "verde"; 
 		else if(num == 3)
-			return "verde";
-		else //if(num == 4)
 			return "azul";
+		else //if(num == 4)
+			return "amarelo";
 	}										
 	
 	public Jogador getJogador3() {

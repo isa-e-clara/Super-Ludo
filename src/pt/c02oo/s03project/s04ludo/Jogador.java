@@ -60,6 +60,8 @@ public class Jogador { //acho que ainda deva ter uma interface superior
 
 
 	public void fazerJogada(int numDado) { 
+		qtdPecasBase = 0;
+		qtdPecasDisponiveis = 0;
 		pecasDisponiveis = new ArrayList(); //ficar de olho nos arrays
         pecasBase = new ArrayList();
 		// a funcao monta duas listas, uma de pecas na base e outra de pecas do tabueleiro que podem andar
@@ -77,9 +79,10 @@ public class Jogador { //acho que ainda deva ter uma interface superior
 		celulaChegada = tabuleiro.getCelulaChegada(peca1, numDado);
 		if (celulaChegada == null)
 			podeAndar = true;
-		else
+		else if (celulaChegada != tabuleiro.getCelula(peca1.getX(), peca1.getY()))
 			podeAndar = (celulaChegada.ehEstrela == false) || (celulaChegada.ehEstrela == true && celulaChegada.getCorPeca() == "") || (celulaChegada.ehEstrela == true && celulaChegada.getCorPeca() == cor) || (celulaChegada.ehEstrela == true && celulaChegada.getCor() == cor);
-
+		else
+			podeAndar = false;
 		if (peca1.getGanhou() == false && podeAndar == true) { 
 			if (peca1.getEstaNaBase() == false) {
 				pecasDisponiveis.add(peca1);

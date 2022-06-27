@@ -58,7 +58,7 @@ public class Tabuleiro {
 				}
 				if (celulaChegada.getProxX() >= 0 && celulaChegada.getProxY() >= 0) 
 					celulaChegada = celulas[celulaChegada.getProxX()][celulaChegada.getProxY()];
-				else //significa que a peça com certeza vai estar no caminho que só ela pode, então ela sempre vai poder mover para lá
+				else if (celulaChegada.getProxX() != -3 && celulaChegada.getProxY() != -3) //significa que a peça com certeza vai estar no caminho que só ela pode, então ela sempre vai poder mover para lá
 					return null;
 			}
 			if (ehDupla == true){
@@ -110,8 +110,8 @@ public class Tabuleiro {
 					//celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()].desconectaPeca(peca);
 					//desconectando a peca da celula antiga e conectando na nova
 				
-					celulas[x][y].desconectaPeca(peca);
 					celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()].conectaPeca(peca);
+					celulas[x][y].desconectaPeca(peca);
 				}
 				
 

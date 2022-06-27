@@ -10,6 +10,7 @@ public class MaquinaRapida extends Maquina{
         //pq vai ter q colocar isso em todas as maquinas e na pessoa... tava pensando em so andar mesmo e fds, por mim pode ser 
     public void fazerJogada(int numDado) { //sempre vai ter uma ou zero pecas no tabuleiro
         //coloca uma peca no tabuleiro e CORRE, só tira outra quando essa primeira for comida ou chegar no final
+        super.fazerJogada(numDado);
         if (qtdPecasDisponiveis != 0) {
             mover(pecasDisponiveis.get(0), numDado);
         }
