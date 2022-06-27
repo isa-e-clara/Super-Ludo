@@ -7,7 +7,7 @@ public class OpcaoVaziaPecaException extends OpcaoVaziaException{
         String[] options = {"continuar", "fechar jogo"};
         int i = JOptionPane.showOptionDialog(null, "Escolha alguma peca para mover!", "ERRO ", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, null);
         if(i == 1)
-            System. exit(0);
+            System.exit(0);
     }
     
 }

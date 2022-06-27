@@ -25,8 +25,10 @@ public class Pessoa extends Jogador{
 		this.option = 0; //inicializando com qualquer valor so pra n dar erro
 
 		if(size == 0) {
-			String[] options = {"continuar"};
-			JOptionPane.showOptionDialog(null, "Voce nao pode mover nenhuma peca :(", "Vez do Jogador " + this.cor, JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, null);
+			String[] options = {"continuar", "fechar jogo"};
+			option = JOptionPane.showOptionDialog(null, "Voce nao pode mover nenhuma peca :(", "Vez do Jogador " + this.cor, JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, null);
+			if(option == 1)
+            	System.exit(0);   
 		} else {
 			try {
 				if(size == 1) { 

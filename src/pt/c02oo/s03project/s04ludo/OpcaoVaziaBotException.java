@@ -7,7 +7,7 @@ public class OpcaoVaziaBotException extends OpcaoVaziaException{
         String[] options = {"vamos la!", "fechar jogo"};
         int i = JOptionPane.showOptionDialog(null, "Por favor, selecione o bot contra qual deseja jogar.", "ERRO ", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, null);
         if(i == 1)
-            System. exit(0);   
+            System.exit(0);   
     }
     
 }
