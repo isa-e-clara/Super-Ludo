@@ -49,7 +49,7 @@ public class Peca extends JPanel{
 			referencia = new ImageIcon("res\\pecaAmarela.PNG");
 		imagem = referencia.getImage();
 
-		altura = imagem.getHeight(null);
+		altura = imagem.getHeight(null); //precisa?
 		largura = imagem.getWidth(null);
 	}
 

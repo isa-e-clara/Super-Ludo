@@ -14,9 +14,6 @@ public class Jogador { //acho que ainda deva ter uma interface superior
 	public Jogador(String cor, Tabuleiro tabuleiro) {
 		this.cor = cor;
 		this.tabuleiro = tabuleiro;
-		//listinha com as pecas disponiveis e as da base
-		pecasDisponiveis = new ArrayList(); //ficar de olho nos arrays
-        pecasBase = new ArrayList();
 		qtdPecasBase = 0;
 		qtdPecasDisponiveis = 0;
 		ganhou = false;
@@ -63,6 +60,8 @@ public class Jogador { //acho que ainda deva ter uma interface superior
 
 
 	public void fazerJogada(int numDado) { 
+		pecasDisponiveis = new ArrayList(); //ficar de olho nos arrays
+        pecasBase = new ArrayList();
 		// a funcao monta duas listas, uma de pecas na base e outra de pecas do tabueleiro que podem andar
 		//faremos sobrecarga dessa função. nos herdeiros, disponibilizaremos todas as pecas do tabuleiro para escolha
 		//e as da base somente se tirar 1 ou 6 (como já feito nas máquinas)
@@ -185,4 +184,19 @@ public class Jogador { //acho que ainda deva ter uma interface superior
 		return peca1;
 	}
 	
+	public String getCor() {
+		return cor;
+	}
+
+	//acho q pode tirar kkk, n to usando na real
+	public Peca getPecaNumero(int num) { //retorna a peca de determinado numero
+		if(num == 1) 
+			return peca1;
+		else if(num == 2)
+			return peca2;
+		else if(num == 3)
+			return peca3;
+		else 
+			return peca4;
+	}
 }

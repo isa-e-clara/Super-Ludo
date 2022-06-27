@@ -1,5 +1,6 @@
 package pt.c02oo.s03project.s04ludo;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class Controle {
 	private Jogador jogador1, jogador2, jogador3, jogador4;
@@ -8,10 +9,10 @@ public class Controle {
 	private Tabuleiro tabuleiro;
 	private int bot;
 	private int jogadorAtual; //eh pra marcar o numero de quem esta na vez de jogar
-	private boolean fimDeJogo; //isso eh pra avisar pra main qnd o jogo terminou
+	private boolean fimDeJogo; 
 	private int numDado;
 	private ArrayList<Jogador> jogadores = new ArrayList<>();
-	private View view;
+	private View view; //acho q da pra tirar
 	
 	public Controle(Tabuleiro tabuleiro) {
 		this.tabuleiro = tabuleiro;
@@ -31,16 +32,17 @@ public class Controle {
 		this.view = view;
 	}
 	
+	//num seria o numero do jogador
 	public String corSelecionada(int num) { //funcao para pegar a cor que a pessoa escolheu para jogar, nsei se deveria estar aqui e nem como fazer isso ainda, pois depende da interface
-		if (num == 1)
-			return "vermelho"; //lembrar de consertar
+		if (num == 1)						//colocar um if qnd for pra escolher a cor da maquina (random)
+			return "vermelho"; 
 		else if(num == 2)
-			return "amarelo"; //num seria o numero do jogador
+			return "amarelo"; 
 		else if(num == 3)
 			return "verde";
 		else //if(num == 4)
 			return "azul";
-	}										//colocar um if qnd for pra escolher a cor da maquina (random)
+	}										
 	
 	public Jogador getJogador3() {
 		return jogador3;
@@ -87,12 +89,11 @@ public class Controle {
 		qtdJogadores -= 1;
 	}
 	
-	public int quantidadeJogadores() { //funcao para pegar da interface a qtd de jogadores
-		return 2; //lembrar de mudar
-	}
 	
 	public int botEscolhido() { //funcao para pegar da interface contra qual maquina a pessoa quer jogar
-		return 0;				// 0 para aleatoria, 1 para inteligente, 2 para rapida
+		String[] options = {"Aleatoria", "Inteligente", "Rapida"};
+        int modo = (JOptionPane.showOptionDialog(null, "Seleciona o bot contra qual deseja jogar", "Quase la!", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, null));
+		return modo;				// 0 para aleatoria, 1 para inteligente, 2 para rapida
 	}
 	
 	public Jogador definirProximoJogador() {
@@ -107,45 +108,33 @@ public class Controle {
 	
 	public void rodarDado() { 
 		numDado = tabuleiro.dado();
-		tabuleiro.atualizarView(numDado);
 	}
 	
 	public void jogar() {	
-		rodarDado();
 		Jogador jogador = definirProximoJogador();
+		rodarDado();
 		jogador.fazerJogada(numDado);
 		if(jogador.jogadorGanhou() == true) {
-			retirarJogador(jogador); //colocar alguma mensagem de vitoria
+			retirarJogador(jogador); 
+			JOptionPane.showMessageDialog(null, "Parabens!!! Jogador " + jogador.getCor() + " ganhou!"); //colocar alguma mensagem de vitoria
 			if(qtdJogadores == 1) {
 				fimDeJogo = true;
 			}
 		}
 	}
 	
-	public void iniciarJogo() { //se tud tiver certo, a gnt so precisa criar um controle e chamar essa funcao na main
-		//lembrar de checar qnd o jogo acabar de vez
-		//qtdJogadores = quantidadeJogadores();
-		//if(qtdJogadores == 1) {
-		//	modo = 1;
-		//	qtdJogadores += 1; //acrescentando a maquina na contagem dos jogadores
-		//	bot = botEscolhido();
-		//} else {
-		//	modo = 0;
-		//}
-		//criaJogadores();
-		
+	public void iniciarJogo() { 
 		while(fimDeJogo == false) {
-
 			jogar();
 		}
-		
+		JOptionPane.showMessageDialog(null, "Fim de jogo!");	
 	}
 
 	public void setQtdJogadores(int qtdJogadores) {
-		this.qtdJogadores = qtdJogadores;
+		this.qtdJogadores = qtdJogadores; //colocar alguma exception aqui caso seja null (pessoa so fechou a janela e n selecionou nada)
 		if(qtdJogadores == 1) {
 			modo = 1;
-			qtdJogadores += 1; //acrescentando a maquina na contagem dos jogadores
+			this.qtdJogadores += 1; //acrescentando a maquina na contagem dos jogadores
 			bot = botEscolhido();
 		} else {
 			modo = 0;

@@ -1,13 +1,19 @@
 package pt.c02oo.s03project.s04ludo;
 import java.awt.Graphics2D;
 import java.util.Random;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 public class Tabuleiro {
 	private Celula[][] celulas;
 	private View view;
 	private Graphics2D grafico; //tirar
+	private int numDado; //se for 0 significa q ainda n comecou
 
 	public Tabuleiro() {
+		numDado = 0;
+
 		celulas = new Celula[15][15];
 		for(int i = 0; i < 15; i++)
 			for(int j = 0; j < 15; j++) {
@@ -219,12 +225,19 @@ public class Tabuleiro {
 	public int dado() {
 		Random rand = new Random();
 		int randomNum = rand.nextInt(6) + 1;
-		return randomNum;
+		this.numDado = randomNum;
+		atualizarView(); 
+		return randomNum; //precisa?
+	}
+
+	public int getNumDado() {
+		return numDado;
 	}
 	
 	//sobrecarga:
-	public void atualizarView(int numDado) { //numDado eh o numero q foi tirado no dado
+	public void atualizarView() { //numDado eh o numero q foi tirado no dado
 		//funcao para atualizar o view do dado qnd mudar o numero ou algo do tipo
+		view.updateUI();
 	}
 	
 	public void atualizarView(Peca peca, int x, int y) {

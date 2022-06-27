@@ -11,6 +11,12 @@ import java.awt.Graphics2D;
 public class View extends JPanel {
     private Image fundo;
     private Controle controle;
+	private Image dado1 = (new ImageIcon("res\\1.jpg")).getImage(); 
+	private Image dado2 = (new ImageIcon("res\\2.jpg")).getImage(); 
+	private Image dado3 = (new ImageIcon("res\\3.jpg")).getImage(); 
+	private Image dado4 = (new ImageIcon("res\\4.jpg")).getImage(); 
+	private Image dado5 = (new ImageIcon("res\\5.jpg")).getImage(); 
+	private Image dado6 = (new ImageIcon("res\\6.jpg")).getImage(); 
 
     public View(Controle controle) {
         this.controle = controle;
@@ -54,12 +60,24 @@ public class View extends JPanel {
 	        graficos.drawImage(controle.getJogador4().getPeca3().getImage(), controle.getJogador4().getPeca3().getXSpawn(), controle.getJogador4().getPeca3().getYSpawn(), this);
 	        graficos.drawImage(controle.getJogador4().getPeca4().getImage(), controle.getJogador4().getPeca4().getXSpawn(), controle.getJogador4().getPeca4().getYSpawn(), this);
         }
+
+        if(controle.getTabuleiro().getNumDado() == 0) {
+            graficos.drawImage(dado1, -2000, -2000, this); //posicao qualquer so pra tirar de dentro da tela
+        } else if(controle.getTabuleiro().getNumDado() == 1) {
+            graficos.drawImage(dado1, 10, 10, this);
+        } else if(controle.getTabuleiro().getNumDado() == 2) {
+            graficos.drawImage(dado2, 10, 10, this);
+        } else if(controle.getTabuleiro().getNumDado() == 3) {
+            graficos.drawImage(dado3, 10, 10, this);
+        } else if(controle.getTabuleiro().getNumDado() == 4) {
+            graficos.drawImage(dado4, 10, 10, this);
+        } else if(controle.getTabuleiro().getNumDado() == 5) {
+            graficos.drawImage(dado5, 10, 10, this);
+        } else if(controle.getTabuleiro().getNumDado() == 6) {
+            graficos.drawImage(dado6, 10, 10, this);
+        }
+
 	    g.dispose();
     }
 
-    // @Override
-    // public void actionPerformed(ActionEvent arg0) {
-    //     controle.getJogador1().getPeca1().update(dx, dy);
-    //     repaint();
-    // }
 }
