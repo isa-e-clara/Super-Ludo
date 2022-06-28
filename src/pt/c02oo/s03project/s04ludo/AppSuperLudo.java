@@ -1,23 +1,22 @@
 package pt.c02oo.s03project.s04ludo;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+
+import pt.c02oo.s03project.s04ludo.Control.Controle;
+import pt.c02oo.s03project.s04ludo.Model.Tabuleiro;
+import pt.c02oo.s03project.s04ludo.View.Frame;
+import pt.c02oo.s03project.s04ludo.View.ViewGrafico;
 
 public class AppSuperLudo {
     public static void main (String args[]) {
         Tabuleiro tabuleiro = Tabuleiro.getInstance();
         Controle controle = new Controle(tabuleiro);
-        View view = new View(controle);
+        ViewGrafico view = new ViewGrafico(controle);
+        
         tabuleiro.conectaView(view);
-
         controle.definirQtdJogadores();;
         controle.criaJogadores();
         
-        //View view = new View(controle);
         new Frame(view);
 
-        controle.conectaView(view);
-        //tabuleiro.conectaView(view);
-        
         controle.iniciarJogo();
         
     }
