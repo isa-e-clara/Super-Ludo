@@ -86,11 +86,19 @@ public class Tabuleiro {
 		//vamos ignorar a barreira
 		//checar se pode mover vai ser la no fazer jogada
 		boolean ehDupla = false;
+		Peca pecaAnterior = null;
+		int xAnterior = -1;
+		int yAnterior = -1;
+		boolean podeDesconectar = false;
 
 		for (int i = 0; i < numDado; i++) {
 
 			int x = peca.getX();
 			int y = peca.getY();
+
+			if(xAnterior != -1 && yAnterior != -1) {
+				celulas[xAnterior][yAnterior].conectaPeca(pecaAnterior);
+			}
 
 			if (celulas[x][y] != null) {
 
@@ -102,21 +110,31 @@ public class Tabuleiro {
 				atualizarView(peca, celulas[x][y].getProxX(), celulas[x][y].getProxY()); //eh aqui mesmo??
 
 				if (celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()] != null) { //s´será null quando a peça já tiver ganhado
-					//esse i == numDado - 1 eh pra checar se eh a ultima andada
-					if (i == numDado - 1 && (celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()].getCorPeca() != peca.getCor()) && (celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()].getCorPeca() != "") ) { //vai comer
-						come(celulas[x][y].getProxX(),celulas[x][y].getProxY());	
+					String cor = celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()].getCorPeca();
+					if(cor != peca.getCor() && cor != "") {
+						if(i == numDado - 1) //esse i == numDado - 1 eh pra checar se eh a ultima andada
+							come(celulas[x][y].getProxX(),celulas[x][y].getProxY());	
+						else if(celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()].retornaPeca().getNumero() == peca.getNumero()){ //quando vai passar por cima de outra peca de mesmo numero
+							xAnterior = celulas[x][y].getProxX();
+							yAnterior = celulas[x][y].getProxY();
+							pecaAnterior = celulas[xAnterior][yAnterior].retornaPeca(); //guardando referencia para a peca que estava la antes
+							podeDesconectar = true;
+						}
 					}
-	
-					//celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()].desconectaPeca(peca);
+
 					//desconectando a peca da celula antiga e conectando na nova
-				
 					celulas[celulas[x][y].getProxX()][celulas[x][y].getProxY()].conectaPeca(peca);
-					celulas[x][y].desconectaPeca(peca);
+					if(xAnterior != -1 && yAnterior != -1 && (! podeDesconectar)) {
+						xAnterior = -1;
+						yAnterior = -1;
+						podeDesconectar = true;
+					} else {
+						celulas[x][y].desconectaPeca(peca);
+						podeDesconectar = false;
+					}
 				}
 				
-
 				//alterando o x e y da peca para o da nova posicao
-
 				peca.setX(celulas[x][y].getProxX());
 				peca.setY(celulas[x][y].getProxY());
 
@@ -126,8 +144,6 @@ public class Tabuleiro {
 					ehDupla = false;
 				}
 			}
-			
-			
 					
 			
 			//verificando se chegou na celula final (ganhou):

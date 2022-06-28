@@ -34,10 +34,9 @@ public class View extends JPanel implements Observer{
 
     public void update() {
         updateUI();
-        try
-        {
-        Thread.sleep (200);
-        } catch (InterruptedException e) {};
+        try {
+            Thread.sleep(200);
+        } catch(InterruptedException e) {};
     }
 
 	public void paint(Graphics g) {

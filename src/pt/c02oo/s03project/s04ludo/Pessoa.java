@@ -26,10 +26,17 @@ public class Pessoa extends Jogador{
 		this.option = 0; //inicializando com qualquer valor so pra n dar erro
 
 		if(size == 0) {
-			String[] options = {"continuar", "fechar jogo"};
+			String[] options = {"continuar"};
 			option = JOptionPane.showOptionDialog(null, "Voce nao pode mover nenhuma peca :(", "Vez do Jogador " + this.cor, JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, null);
-			if(option == 1)
-            	System.exit(0);   
+			if(option == -1) {
+				String[] options2 = {"sim", "nao"};
+				option = JOptionPane.showOptionDialog(null, "Deseja fechar o jogo?", "VAI DESISTIR??", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options2, null);
+				if(option == 0)
+            		System.exit(0);   
+			}
+			try {
+				Thread.sleep(400); //ver se esse tempo ta bom
+			} catch(InterruptedException e) {};
 		} else {
 			try {
 				if(size == 1) { 
