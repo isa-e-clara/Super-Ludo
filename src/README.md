@@ -32,11 +32,11 @@ O objetivo é dar a volta no tabuleiro com todas suas 4 peças, movimentando-as 
 ### Sobre os bots...
 Pode-se escolher competir contra um dos bots, são eles:
 
-'Máquina aleatória' - Justamente como o nome indica, realiza todas as suas escolhas de forma aleatória. Sendo assim, entre todas as pecas que podem ser movidas de acordo com o número do dado tirado, a máquina escolhe cegamente qual vai se mover. 
+`Máquina aleatória` - Justamente como o nome indica, realiza todas as suas escolhas de forma aleatória. Sendo assim, entre todas as pecas que podem ser movidas de acordo com o número do dado tirado, a máquina escolhe cegamente qual vai se mover. 
 
-'Máquina rápida' - A estratégia da máquina rápida é colocar uma peça no tabuleiro e andar somente com ela, até que esta termine o percurso ou seja comida. Dessa forma, essa máquina nunca terá mais de uma peça no tabuleiro ou peças empilhadas. Corre com sua peça até a vitória (ou a morte).
+`Máquina rápida` - A estratégia da máquina rápida é colocar uma peça no tabuleiro e andar somente com ela, até que esta termine o percurso ou seja comida. Dessa forma, essa máquina nunca terá mais de uma peça no tabuleiro ou peças empilhadas. Corre com sua peça até a vitória (ou a morte).
 
-'Máquina inteligente' - Com seu código desenvolvido a partir da estratégia de Ludo eleita mais competente pela dupla, a máquina inteligente pondera diversas possibilidades para escolher a peça que vai se mover a seguir, tentando sempre procurar o melhor caminho a partir de diversas condicionais. Para isso, existe uma lista de prioridades, em ordem decrescente, que explica como essa máquina toma decisões:
+`Máquina inteligente` - Com seu código desenvolvido a partir da estratégia de Ludo eleita mais competente pela dupla, a máquina inteligente pondera diversas possibilidades para escolher a peça que vai se mover a seguir, tentando sempre procurar o melhor caminho a partir de diversas condicionais. Para isso, existe uma lista de prioridades, em ordem decrescente, que explica como essa máquina toma decisões:
   - 1. Não deixar peça empilhada ser comida (perder duas ou mais peças ao mesmo tempo é muito negativo. Assim, mapeia-se quantas peças inimigas conseguem alcançar a peça dupla e, se for constatado que essa está em apuros, ela anda para tentar fugir)
   - 2. Comer peça saindo da base, ao tirar 1 (tirando 1, caso tenha alguém na célula de proteção da sua cor, você não só come uma peça adversária e coloca mais uma peça sua em jogo, mas coloca a sua peça numa posição de proteção)
   - 3. comer uma peça adversária com uma peça que já estava no tabuleiro (danos ao adversário)
