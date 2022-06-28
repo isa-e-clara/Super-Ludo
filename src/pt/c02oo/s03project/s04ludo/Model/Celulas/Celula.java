@@ -5,7 +5,7 @@ import pt.c02oo.s03project.s04ludo.Model.Peca;
 public class Celula {
 	protected Peca peca1, peca2, peca3, peca4; //pode ter no maximo quatro pecas empilhadas do mesmo time
 	protected int x, y;
-	protected int proximaX, proximaY;
+	protected int proximaX, proximaY, anteriorX, anteriorY;;
 	protected String cor;
 	protected boolean ehEstrela;
 
@@ -20,6 +20,8 @@ public class Celula {
 		ehEstrela = false;
 		proximaX = -3; //quando ganhar, não definimos a próxima, ou seja, sempre será -3
 		proximaY = -3;
+		anteriorX = -3;
+		anteriorY = -3;
 	}
 
 	public String getCor() {
@@ -77,6 +79,19 @@ public class Celula {
 	public void definirProxima(int i, int j) {
 		this.proximaX = i;
 		this.proximaY = j;
+	}
+
+	public void definirAnterior(int i, int j) {
+		this.anteriorX = i;
+		this.anteriorY = j;
+	}
+
+	public int getXAnterior () {
+		return anteriorX;
+	}
+
+	public int getYAnterior () {
+		return anteriorY;
 	}
 
 	public String getCorPeca() {
