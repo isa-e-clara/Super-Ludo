@@ -85,9 +85,9 @@ public class Controle {
 	}
 	
 	public void botEscolhido() { //funcao para pegar da interface contra qual maquina a pessoa quer jogar
-		String[] options = {"Aleatoria", "Inteligente", "Rapida"}; // 0 para aleatoria, 1 para inteligente, 2 para rapida
+		String[] options = {"Aleatório", "Inteligente", "Rápido"}; // 0 para aleatoria, 1 para inteligente, 2 para rapida
 		try {
-			bot = (JOptionPane.showOptionDialog(null, "Seleciona o bot contra qual deseja jogar", "Quase la!", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, null));
+			bot = (JOptionPane.showOptionDialog(null, "Selecione o bot contra qual deseja jogar", "Quase lá!", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, null));
 			if(bot == -1) //fechou a janela sem selecionar uma opcao
 				throw new OpcaoVaziaBotException();			
 		} catch (OpcaoVaziaBotException e) {
@@ -115,7 +115,7 @@ public class Controle {
 		jogador.fazerJogada(numDado);
 		if(jogador.jogadorGanhou() == true) {
 			retirarJogador(jogador); 
-			JOptionPane.showMessageDialog(null, "Parabens!!! Jogador " + jogador.getCor() + " ganhou!"); 
+			JOptionPane.showMessageDialog(null, "Parabéns!!! Jogador " + jogador.getCor() + " ganhou!"); 
 			if(qtdJogadores == 1) {
 				fimDeJogo = true;
 			}
@@ -132,7 +132,7 @@ public class Controle {
 	public void definirQtdJogadores() {
         String[] options = {"1", "2", "3", "4"};
 		try {
-			this.qtdJogadores = (JOptionPane.showOptionDialog(null, "Selecione o numero de jogadores", "Bem vindo!", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, null)) + 1;
+			this.qtdJogadores = (JOptionPane.showOptionDialog(null, "Selecione o número de jogadores", "Bem vindo!", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, null)) + 1;
             if(this.qtdJogadores == 0) //fechou a tela sem selecionar nada
                 throw new OpcaoVaziaQtdJogadoresException();
 			

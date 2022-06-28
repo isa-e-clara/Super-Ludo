@@ -18,7 +18,6 @@ public class MaquinaInteligente extends Maquina {
     //ir pra uma celula estrela > 
     //andar pecas na linha de chegada
     //empilhar peca
-
     //sortear uma peca aleatoria para andar
 
     //se existir peca empilhada, cuidar dessa pra nao perder duas pecas de uma vez

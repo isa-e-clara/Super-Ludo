@@ -22,10 +22,10 @@ public class Pessoa extends Jogador{
 		this.option = 0; 
 
 		if(size == 0) {
-			String[] options = {"continuar"};
-			option = JOptionPane.showOptionDialog(null, "Voce nao pode mover nenhuma peca :(", "Vez do Jogador " + this.cor, JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, null);
+			String[] options = {"Continuar"};
+			option = JOptionPane.showOptionDialog(null, "Você não pode mover nenhuma peça :(", "Vez do Jogador " + this.cor, JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, null);
 			if(option == -1) {
-				String[] options2 = {"sim", "nao"};
+				String[] options2 = {"Sim", "Não"};
 				option = JOptionPane.showOptionDialog(null, "Deseja fechar o jogo?", "VAI DESISTIR??", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options2, null);
 				if(option == 0) //sair do jogo
             		System.exit(0);   
@@ -37,16 +37,16 @@ public class Pessoa extends Jogador{
 			try {
 				if(size == 1) { 
 					String[] options = {Integer.toString(pecasDisponiveis.get(0).getNumero())};
-					this.option = (JOptionPane.showOptionDialog(null, "Selecione a peca que deseja mover", "Vez do Jogador " + this.cor, JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, null));
+					this.option = (JOptionPane.showOptionDialog(null, "Selecione a peça que deseja mover", "Vez do Jogador " + this.cor, JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, null));
 				} else if(size == 2) {
 					String[] options = {Integer.toString(pecasDisponiveis.get(0).getNumero()), Integer.toString(pecasDisponiveis.get(1).getNumero())};
-					this.option = (JOptionPane.showOptionDialog(null, "Selecione a peca que deseja mover", "Vez do Jogador " + this.cor, JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, null));
+					this.option = (JOptionPane.showOptionDialog(null, "Selecione a peça que deseja mover", "Vez do Jogador " + this.cor, JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, null));
 				} else if(size == 3) {
 					String[] options = {Integer.toString(pecasDisponiveis.get(0).getNumero()), Integer.toString(pecasDisponiveis.get(1).getNumero()), Integer.toString(pecasDisponiveis.get(2).getNumero())};
-					this.option = (JOptionPane.showOptionDialog(null, "Selecione a peca que deseja mover", "Vez do Jogador " + this.cor, JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, null));
+					this.option = (JOptionPane.showOptionDialog(null, "Selecione a peça que deseja mover", "Vez do Jogador " + this.cor, JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, null));
 				} else {//if(size == 4) {
 					String[] options = {Integer.toString(pecasDisponiveis.get(0).getNumero()), Integer.toString(pecasDisponiveis.get(1).getNumero()), Integer.toString(pecasDisponiveis.get(2).getNumero()), Integer.toString(pecasDisponiveis.get(3).getNumero())};
-					this.option = (JOptionPane.showOptionDialog(null, "Selecione a peca que deseja mover", "Vez do Jogador " + this.cor, JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, null));
+					this.option = (JOptionPane.showOptionDialog(null, "Selecione a peça que deseja mover", "Vez do Jogador " + this.cor, JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, null));
 				}
 				if(this.option == -1) //fechou a janela sem selecionar uma opcao
 					throw new OpcaoVaziaPecaException();
