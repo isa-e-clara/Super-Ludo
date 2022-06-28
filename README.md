@@ -22,7 +22,7 @@ obs: rodar o executável na mesma pasta que a pasta assets
 > [Proposta inicial do jogo](https://docs.google.com/presentation/d/12rV_AdN4QFR2ecZaUHOLwGJCzaUigwPXL5O03V0YcQ4/edit#slide=id.p)
 
 ## Slides da Apresentação Final
-> [Apresentação Final](https://drive.google.com/file/d/1JpLREnTLMK4K1h6HSGsXSt6ahBbr9B3n/view?usp=sharing)
+> [Apresentação Final](https://www.canva.com/design/DAFE2J06abs/lrU3FeykeHoHeoiFLIUH_Q/view?utm_content=DAFE2J06abs&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink)
 
 # Diagramas
 
