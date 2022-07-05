@@ -309,51 +309,51 @@ public class CelulaFactory {
 
 ## Detalhamento das Interfaces
 
-### Interface `<nome da interface>`
+### Interface `Observed`
 
-`<Resumo do papel da interface.>`
-
-~~~
-<Interface em Java.>
-~~~
-
-Método | Objetivo
--------| --------
-`<id do método em Java>` | `<objetivo do método e descrição dos parâmetros>`
-
-## Exemplo:
-
-### Interface `ITableProducer`
-
-Interface provida por qualquer fonte de dados que os forneça na forma de uma tabela.
+Interface utilizada no padrão de projeto Observer, implementada por todos aqueles que são observados (subject)
 
 ~~~java
-public interface ITableProducer {
-  String[] requestAttributes();
-  String[][] requestInstances();
+public interface Observed {
+    public void registrar(Observer obj);
+    public void notificarObservadores(); 
 }
 ~~~
 
 Método | Objetivo
 -------| --------
-`requestAttributes` | Retorna um vetor com o nome de todos os atributos (colunas) da tabela.
-`requestInstances` | Retorna uma matriz em que cada linha representa uma instância e cada coluna o valor do respectivo atributo (a ordem dos atributos é a mesma daquela fornecida por `requestAttributes`.
+`registrar` | Registra um novo observador (obj) em sua ArrayList de observadores.
+`notificarObservadores` | Notifica cada observador da ArrayList de observadores de que houve uma mudança, chamando sua função update
 
-### Interface `IDataSetProperties`
+### Interface `Observer`
 
-Define o recurso (usualmente o caminho para um arquivo em disco) que é a fonte de dados.
+Interface utilizada no padrão de projeto Observer, implementada por todos aqueles que são observadores de algum outro objeto.
 
 ~~~java
-public interface IDataSetProperties {
-  public String getDataSource();
-  public void setDataSource(String dataSource);
+public interface Observer {
+    public void update();
 }
 ~~~
 
 Método | Objetivo
 -------| --------
-`getDataSource` | Retorna o caminho da fonte de dados.
-`setDataSource` | Define o caminho da fonte de dados, informado através do parâmetro `dataSource`.
+`update` | É chamado quando ocorre alguma mudança com o observado (subject). A partir desse método, são implementadas as atualizações que a classe deve fazer de acordo com essa mudança.
+
+### Interface `IJogador`
+
+Interface implementada por todos aqueles que são jogadores.
+
+~~~java
+public interface IJogador {
+    public void fazerJogada(int numDado);
+    public void mover(Peca peca, int numDado);
+}
+~~~
+
+Método | Objetivo
+-------| --------
+`fazerJogada` | Define as peças que estão disponíveis para mover e implementa uma estratégia para decidir qual delas escolher (se for uma pessoa, ela apenas tem que clicar na desejada, mas se for uma máquina, é programado um "raciocínio" para a tomada de decisão).
+`mover` | Move no tabuleiro a peça indicada.
 
 # Plano de Exceções
 
