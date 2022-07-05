@@ -311,7 +311,7 @@ public class CelulaFactory {
 
 ### Interface `Observed`
 
-Interface utilizada no padrão de projeto Observer, implementada por todos aqueles que são observados (subject)
+Interface utilizada no padrão de projeto Observer, implementada por todos aqueles que são observados (subject).
 
 ~~~java
 public interface Observed {
@@ -323,7 +323,7 @@ public interface Observed {
 Método | Objetivo
 -------| --------
 `registrar` | Registra um novo observador (obj) em sua ArrayList de observadores.
-`notificarObservadores` | Notifica cada observador da ArrayList de observadores de que houve uma mudança, chamando sua função update
+`notificarObservadores` | Notifica cada observador da ArrayList de observadores de que houve uma mudança, chamando sua função update.
 
 ### Interface `Observer`
 
