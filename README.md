@@ -16,7 +16,7 @@
 > 
 obs: 
 > - rodar o executável na mesma pasta que a pasta assets
-> - há um executável específico para os sistemas Linux, pois nesse caso o caminho das imagens deve ser alterado no código (de '\\' para '//') nas classes Peca e ViewGrafico
+> - há um executável específico para os sistemas Linux, pois nesse caso o caminho das imagens deve ser alterado no código (de '\\' para '/') nas classes Peca e ViewGrafico
 
 # Slides do Projeto
 
