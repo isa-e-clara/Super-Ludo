@@ -30,13 +30,11 @@ obs:
 
 > Relatório de evolução, descrevendo as evoluções do design do projeto, dificuldades enfrentadas, mudanças de rumo, melhorias e lições aprendidas. Referências aos diagramas e recortes de mudanças são bem-vindos.
 
-# Destaques de Código
-
 # Destaques de Orientação a Objetos
 
 # Conexões
 ## Diagrama de Classes usada no destaque OO:
-> Sugere-se um diagrama de classes para o destaque, mas podem ser usados outros tipos de diagrama, conforme a necessidade.
+![Conexoes](assets/conexoes.png)
 
 ## Código do Destaque OO
 ~~~java
@@ -56,7 +54,7 @@ public class Tabuleiro {
 }
 ~~~
 
-> Para fazermos a arquitetura do jogo (mencionada em detalhes posteriormente), seguindo o modelo MVC, utilizamos conexões entre as classes. Portanto, implementamos métodos conecta para conectar os objetos necessários.
+> Para fazermos a arquitetura do jogo (mencionada em detalhes posteriormente), seguindo o modelo MVC, utilizamos conexões entre as classes. Portanto, implementamos métodos conecta para conectar os objetos necessários. No diagrama acima, é possível ver todas as conexões utilizadas, que serão melhor explicadas na seção de arquitetura.
 
 # Encapsulamento
 
@@ -108,7 +106,7 @@ public void atualizarView(Peca peca, int x, int y) {
 
 # Herança e sobreposição
 ## Diagrama de Classes usada no destaque OO:
-> Sugere-se um diagrama de classes para o destaque, mas podem ser usados outros tipos de diagrama, conforme a necessidade.
+![Heranca](assets/heranca.png)
 
 ## Código do Destaque OO
 ~~~java
@@ -153,7 +151,7 @@ public class MaquinaRapida extends Maquina{
 
 # Polimorfismo
 ## Diagrama de Classes usada no destaque OO:
-> Sugere-se um diagrama de classes para o destaque, mas podem ser usados outros tipos de diagrama, conforme a necessidade.
+![Polimorfismo](assets/polimorfismo.png)
 
 ## Código do Destaque OO
 ~~~java
@@ -178,7 +176,7 @@ public class Controle {
 
 # Singleton
 ## Diagrama do Pattern
-> Diagrama do pattern dentro do contexto da aplicação.
+![Singleton](assets/singleton.png)
 
 ## Código do Pattern
 ~~~java
@@ -203,7 +201,7 @@ public class Tabuleiro {
 
 # Observer
 ## Diagrama do Pattern
-> Diagrama do pattern dentro do contexto da aplicação.
+![Observer](assets/observer.png)
 
 ## Código do Pattern
 ~~~java
@@ -243,12 +241,12 @@ public class ViewGrafico extends JPanel implements Observer {
 }
 ~~~
 
-> O padrão Observer define um relacionamento de dependência entre n objetos. No nosso caso, colocamos a classe ViewGrafico como Observer e a classe Peca como Observed (Subject), implementando tais interfaces. Dessa forma, quando o objeto peça se mover, ele irá notificar seus observadores, que nesse caso será apenas a view, conforme diagrama, chamando seu método update. Com ele, a ViewGrafico irá atualizar a interface gráfica, mostrando a peça se movendo na tela. Esse padrão facilita a dependência entre os objetos e as atualizações que devem ser feitas, tornando o código mais lógico e limpo.
+> O padrão Observer define um relacionamento de dependência entre n objetos. No nosso caso, colocamos a classe ViewGrafico como Observer e a classe Peca como Observed (Subject), implementando tais interfaces. Dessa forma, quando o objeto peça se mover, ele irá notificar seus observadores, que nesse caso será apenas a view, conforme diagrama, chamando seu método update. Com ele, a ViewGrafico irá atualizar a interface gráfica, mostrando a peça se movendo na tela. Cabe ressaltar que para fazer isso primeiramente registramos a view como observadora, com o método registrar. Esse padrão facilita a dependência entre os objetos e as atualizações que devem ser feitas, tornando o código mais lógico e limpo.
 
 
 # Factory
 ## Diagrama do Pattern
-> Diagrama do pattern dentro do contexto da aplicação.
+![Factory](assets/factory.png)
 
 ## Código do Pattern
 ~~~java
