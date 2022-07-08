@@ -32,18 +32,7 @@ obs:
 
 # Destaques de Código
 
-> Escolha trechos relevantes e/ou de destaque do seu código. Apresente um recorte (você pode usar reticências para remover partes menos importantes). Veja como foi usado o highlight de Java para o código.
-
-~~~java
-// Recorte do seu código
-public void algoInteressante(…) {
-   …
-   trechoInteressante = 100;
-}
-~~~
-
 # Destaques de Orientação a Objetos
-> Destaque partes do código em que a orientação a objetos foi aplicada para aprimorar seu código. Por exemplo, o uso de polimorfismo para ajustar ações conforme o contexto. Sugestão de estrutura:
 
 # Conexões
 ## Diagrama de Classes usada no destaque OO:
@@ -67,11 +56,9 @@ public class Tabuleiro {
 }
 ~~~
 
-> explicação
+> Para fazermos a arquitetura do jogo (mencionada em detalhes posteriormente), seguindo o modelo MVC, utilizamos conexões entre as classes. Portanto, implementamos métodos conecta para conectar os objetos necessários.
 
 # Encapsulamento
-## Diagrama de Classes usada no destaque OO:
-> Sugere-se um diagrama de classes para o destaque, mas podem ser usados outros tipos de diagrama, conforme a necessidade.
 
 ## Código do Destaque OO
 ~~~java
@@ -100,11 +87,9 @@ public class Peca extends JPanel implements Observed{
 }
 ~~~
 
-> explicação
+> O encapsulamento garante a segurança do código, protegendo os atributos de acessos diretos. Além disso, facilita a manutenção e reuso do código. Para isso, colocamos os atributos como protegidos ou privados e utilizamos métodos getters and setters.
 
 # Sobrecarga de métodos
-## Diagrama de Classes usada no destaque OO:
-> Sugere-se um diagrama de classes para o destaque, mas podem ser usados outros tipos de diagrama, conforme a necessidade.
 
 ## Código do Destaque OO
 ~~~java
@@ -119,7 +104,7 @@ public void atualizarView(Peca peca, int x, int y) {
 }
 ~~~
 
-> explicação
+> Foram criados dois métodos com o mesmo nome, porém com parâmetros diferentes, caracterizando a sobrecarga. Um deles é para quando vamos atualizar a imagem do dado do jogo e o outro é para quando precisamos atualizar a imagem da peça se movendo. 
 
 # Herança e sobreposição
 ## Diagrama de Classes usada no destaque OO:
@@ -164,7 +149,7 @@ public class MaquinaRapida extends Maquina{
 }
 ~~~
 
-> explicação
+> Trabalhamos bastante com o conceito de herança, uma vez que tínhamos classes bem parecidas, mas cada uma com algumas particularidades a mais. Como podemos ver no diagrama, Pessoa é herdeira de Jogador e MaquinaRapida é herdeira de Maquina (que é herdeira de Jogador), com isso todo Jogador tem o método fazerJogada, mas para cada caso há particularidades, então nessas classes o método é sobreposto, acrescentando mais ações de código.
 
 # Polimorfismo
 ## Diagrama de Classes usada no destaque OO:
@@ -186,7 +171,7 @@ public class Controle {
 }
 ~~~
 
-> explicação
+> O conceito de polimorfismo foi bem explorado no decorrer do projeto. Por exemplo, na classe Controle, foram declarados 4 objetos da classe Jogador, mas que foram instanciados nas classes Pessoa ou Maquina, dependendo do caso.
 
 # Destaques de Pattern
 > Os padrões de projeto adotados pela equipe foram:
@@ -213,7 +198,7 @@ public class Tabuleiro {
 }
 ~~~
 
-> Explicação de como o pattern foi adotado e quais suas vantagens, referenciando o diagrama.
+> Este padrão de projeto garante a existência de apenas uma instância de uma classe, tornando um acesso único para o objeto. No caso, adotamos isso para o Tabuleiro, uma vez que existe apenas um tabuleiro no jogo, então faz sentido ter apenas um ponto de acesso a ele, pois é um objeto único compartilhado por diferentes partes do programa. Como visto no diagrama, conectamos o controle e as peças com a instância do tabuleiro.
 
 
 # Observer
@@ -258,7 +243,7 @@ public class ViewGrafico extends JPanel implements Observer {
 }
 ~~~
 
-> Explicação de como o pattern foi adotado e quais suas vantagens, referenciando o diagrama.
+> O padrão Observer define um relacionamento de dependência entre n objetos. No nosso caso, colocamos a classe ViewGrafico como Observer e a classe Peca como Observed (Subject), implementando tais interfaces. Dessa forma, quando o objeto peça se mover, ele irá notificar seus observadores, que nesse caso será apenas a view, conforme diagrama, chamando seu método update. Com ele, a ViewGrafico irá atualizar a interface gráfica, mostrando a peça se movendo na tela. Esse padrão facilita a dependência entre os objetos e as atualizações que devem ser feitas, tornando o código mais lógico e limpo.
 
 
 # Factory
@@ -289,7 +274,8 @@ public class CelulaFactory {
 }
 ~~~
 
-> Explicação de como o pattern foi adotado e quais suas vantagens, referenciando o diagrama.
+> Para fazer o jogo, criamos um tabuleiro que pode conter alguns tipos de célula diferentes (celula, base, celulaEstrela), dependendo da posição. Com isso, para deixar o código mais organizado, facilitar seu reuso e manutenção, além de ser mais lógico, adotamos o padrão Factory. A partir dele, foi feita a classe CelulaFactory que dada uma posição (i, j) do tabuleiro, ela já checa as condições necessárias e retorna a célula criada para aquela posição, já com o tipo adequado, vide código e diagrama acima. Logo, quando criamos o tabuleiro (que é uma matriz de células), chamamos o método criarCelula da classe CelulaFcatory para cada posição.
+
 
 # Conclusões e Trabalhos Futuros
 
