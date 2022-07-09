@@ -35,6 +35,28 @@ obs:
 <p>	Outra dificuldade enfrentada pela dupla foi corrigir os inúmeros bugs que apareciam quando a maior parte do programa já havia sido finalizada. Isso porque os bugs eram, muitas vezes, condicionais e específicos. Como exemplo, temos um bug que encontramos quando uma peça número X passava por uma casa que já havia uma peça desse mesmo número, mas de um outro jogador. Nesse cenário, o bug era que a peça do outro jogador tornava-se imóvel e inexistente para o jogo. Uma vez encontrado, entretanto, devíamos reproduzir esse mesmo cenário no jogo, várias vezes, para entender o que estava acontecendo até que o bug fosse entendido e resolvido. Entretanto, o Ludo é um jogo que envolve sorte e, muitas vezes, custava tempo e esforço até que fosse possível reproduzir cenários específicos, o que fez com que os acabamentos finais realizados pelo grupo demorassem.</p>
 <p>	Finalmente, com o projeto já finalizado, levantamos a curiosidade de entender quão eficazes são as estratégias implementadas por cada bot. Para quantificar esses dados, cada conjunto de bots diferentes se enfrentou e reunimos as estatísticas de 25 jogos. Quando o Bot Rápido enfrenta o Bot Aleatório, o Bot Aleatório ganha 64% dos jogos. Já quando o Bot Aleatório enfrenta o Bot Inteligente, o Bot Inteligente ganha 92% das vezes. Por fim, na disputa Bot Rápido e Bot Inteligente, o Bot Inteligente ganha 100% das vezes. Dessa forma, concluímos que o Ludo, apesar de ser um jogo que envolve sorte (haja vista as 2 vezes que o bot aleatório ganhou do bot inteligente, por exemplo) é majoritariamente estratégico.</p>
 
+# Destaques de Código
+
+~~~java
+public class MaquinaInteligente extends Maquina {
+
+    public MaquinaInteligente(String cor, Tabuleiro tabuleiro) {
+		super(cor, tabuleiro);
+	}
+    //não deixar peca dupla ser comida > 
+    //comer alguem saindo da base (tirando 1) > 
+    //comer alguem com uma peca q ja estava no tabuleiro > 
+    //sair da base tirando 1> 
+    //fugir com uma peça simples (diminuir alcance) > 
+    //sair da base tirando 6 (ver alcance) > 
+    //ir pra uma celula estrela > 
+    //andar pecas na linha de chegada
+    //empilhar peca
+    //sortear uma peca aleatoria para andar
+    ...
+~~~
+
+> O recorte de código pertence ao bot inteligente desenvolvido pelo grupo, que implementa a estratégia que consideramos mais apropriada (descrita no código).
 
 # Destaques de Orientação a Objetos
 
